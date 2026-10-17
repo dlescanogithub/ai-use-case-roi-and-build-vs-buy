@@ -5,7 +5,7 @@ This is how to operate the calculator. There is no production service.
 ## Operate
 
 1. Work from a git branch. Do not edit `main` in place.
-2. Change numbers only in `assumptions/*.yaml`. Each rationale stays tagged `[EST]` until you truly have a measurement.
+2. Change invented numbers only in the case YAML. Each parameter stays `illustrative: true` and each rationale stays tagged `[EST]` while it is still a guess. Field-by-field steps are in `docs/REPLACE_THE_ASSUMPTIONS.md`.
 3. Regenerate, from the repo root:
 
 ```bash
@@ -13,7 +13,7 @@ ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template python -m roi_model.cli publish
 ```
 
 4. Read the diff of `docs/ONE_PAGER_EN.md`, `docs/ONE_PAGER_ES.md` and `docs/results/*.json` before you commit it.
-5. If you have a measured per-run cost, put it in a file that is not the stub:
+5. The file `assumptions/measured_eval_run_cost.yaml` is a 23-case eval bill. Do not pass it to `--measured-cost`. A per-item override is a different file:
 
 ```yaml
 status: measured

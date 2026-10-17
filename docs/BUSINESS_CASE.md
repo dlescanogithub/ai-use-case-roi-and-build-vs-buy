@@ -17,7 +17,7 @@ The model is the monthly calculator in this repo. On the base assumption file:
 | 3-year NPV at a 10% [EST] discount rate | USD 180,923.12 | same file |
 | Does the pessimistic set pay back? | No | same file, NPV USD -350,556.83 |
 
-Command that wrote the file: `ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template ROI_MC_DRAWS=2000 ROI_SEED=42 python -m roi_model.cli publish-docs`.
+Command that wrote the file: `ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template ROI_MC_DRAWS=2000 ROI_SEED=42 python3 -m roi_model.cli publish-docs`.
 
 This is not a forecast, a quote, or evidence that a company saved this money. It is the arithmetic of the assumption file. Change the review rate or the volume and the sign can flip. The Monte Carlo P10 NPV on that same run was negative (USD -5,178.08), so a slice of the assumption ranges does not pay back inside three years.
 

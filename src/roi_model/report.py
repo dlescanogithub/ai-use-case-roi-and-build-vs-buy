@@ -10,14 +10,11 @@ from html import escape
 
 from roi_model import __version__
 from roi_model.analysis import Analysis
+from roi_model.measured_cost import render_measured_markdown
 from roi_model.model import ModelResult, Payback
 from roi_model.svgchart import tornado_svg
 
-MEASURED_SLOT = (
-    "Measured per-run cost slot: plug a figure from agent-runtime-evals "
-    "(private) only through a file with status measured. Stub numbers are not "
-    "vendor prices and are not applied unless that status is set."
-)
+ILLUSTRATIVE_BANNER = "Illustrative numbers, replace with your own"
 
 
 def money(amount: float, currency: str) -> str:
@@ -58,13 +55,15 @@ def render_markdown(
     result = analysis.result
     currency = case.meta.currency
     lines = [
+        ILLUSTRATIVE_BANNER,
+        "",
         f"# ROI report: {case.meta.title}",
         "",
         f"- Generated: {generated_at}",
         f"- Command: `{command}`",
         f"- Package version: {__version__}",
         f"- Git revision: {git_revision}",
-        "- Data: 100% synthetic. Every input is [EST] unless a measured-cost file was applied.",
+        "- Data: 100% synthetic. Every input is illustrative [EST].",
         "- Outputs: simulated.",
         f"- Company: {case.meta.company} (fictional).",
         "",
@@ -145,19 +144,27 @@ def render_markdown(
             "",
             "## Assumptions",
             "",
-            "| Parameter | Value | Range | Why it is here |",
-            "| --- | --- | --- | --- |",
+            "| Parameter | Value | Label | Range | Why it is here |",
+            "| --- | --- | --- | --- | --- |",
         ]
     )
     for spec in case.parameters.values():
-        lines.append(f"| {spec.name} | {spec.value} {spec.unit} | {spec.low} to {spec.high} | {spec.rationale} |")
+        label = "illustrative [EST]" if spec.illustrative else "[EST]"
+        lines.append(
+            f"| {spec.name} | {spec.value} {spec.unit} | {label} | {spec.low} to {spec.high} | {spec.rationale} |"
+        )
     lines.extend(
         [
             "",
             "## Measured-cost slot",
             "",
-            MEASURED_SLOT,
-            ("Applied in this run: yes." if analysis.measured_override else "Applied in this run: no."),
+            render_measured_markdown(lang="en"),
+            "",
+            (
+                "Applied as the agent cost in this run: yes."
+                if analysis.measured_override
+                else "Applied as the agent cost in this run: no."
+            ),
             "",
             case.meta.measured_cost_slot,
             "",
@@ -176,7 +183,8 @@ def render_html(analysis: Analysis, markdown_preface: str, svg: str) -> str:
         "<style>body{font-family:sans-serif;margin:2rem;line-height:1.45}"
         "pre{white-space:pre-wrap}</style></head><body>"
         f"<h1>{title}</h1>"
-        "<p>Simulated report. Inputs are [EST]. This page does not call a network.</p>"
+        f"<p>{escape(ILLUSTRATIVE_BANNER)}</p>"
+        "<p>Simulated report. Inputs are illustrative [EST]. This page does not call a network.</p>"
         f"{svg}"
         f"<pre>{body}</pre></body></html>"
     )
@@ -203,12 +211,16 @@ def _one_pager_en(analysis: Analysis, generated_at: str, command: str, git_revis
     top = ", ".join(row.name for row in analysis.tornado[:3])
     return "\n".join(
         [
+            ILLUSTRATIVE_BANNER,
+            "",
             f"# {analysis.case.meta.title}",
             "",
             f"Generated {generated_at} by `{command}` (package {__version__}, git {git_revision}).",
-            "Simulated. Every input is [EST]. This page is not a measured business result.",
+            "Simulated. Every input is illustrative [EST]. This page is not a measured business result.",
             "",
             analysis.case.meta.narrative,
+            "",
+            *_input_table(analysis),
             "",
             "## What the model says",
             "",
@@ -233,8 +245,9 @@ def _one_pager_en(analysis: Analysis, generated_at: str, command: str, git_revis
             "",
             "## Link to measured data",
             "",
-            MEASURED_SLOT,
-            "Applied in this run: " + ("yes." if analysis.measured_override else "no."),
+            render_measured_markdown(lang="en"),
+            "",
+            "Applied as the agent cost in this run: " + ("yes." if analysis.measured_override else "no."),
             "",
         ]
     )
@@ -247,15 +260,19 @@ def _one_pager_es(analysis: Analysis, generated_at: str, command: str, git_revis
     payback = _payback_phrase_es(result.payback)
     return "\n".join(
         [
+            ILLUSTRATIVE_BANNER,
+            "",
             f"# {analysis.case.meta.title}",
             "",
             (f"Generado el {generated_at} con `{command}` (paquete {__version__}, git {git_revision})."),
-            "Simulado. Cada insumo es [EST]. Esto no es un resultado medido de un negocio real.",
+            "Simulado. Cada insumo es ilustrativo [EST]. Esto no es un resultado medido de un negocio real.",
             "",
             "Mirá: el número de abajo sale de supuestos, no de una factura.",
             "Fijate que el tiempo de revisión y el error que queda están adentro del cálculo.",
             "",
             analysis.case.meta.narrative_es,
+            "",
+            *_input_table(analysis),
             "",
             "## Qué dice el modelo",
             "",
@@ -280,15 +297,23 @@ def _one_pager_es(analysis: Analysis, generated_at: str, command: str, git_revis
             "",
             "## Lugar para un dato medido",
             "",
-            (
-                "Slot de costo medido por corrida: podés enchufar un número medido en "
-                "agent-runtime-evals (privado) solo con un archivo en status measured. "
-                "Los stubs no son precios de proveedor y no se aplican si el status no es measured."
-            ),
-            "Aplicado en esta corrida: " + ("sí." if analysis.measured_override else "no."),
+            render_measured_markdown(lang="es"),
+            "",
+            "Aplicado como costo del agente en esta corrida: " + ("sí." if analysis.measured_override else "no."),
             "",
         ]
     )
+
+
+def _input_table(analysis: Analysis) -> list[str]:
+    rows = [
+        "| Input | Value | Label |",
+        "| --- | --- | --- |",
+    ]
+    for spec in analysis.case.parameters.values():
+        label = "illustrative [EST]" if spec.illustrative else "[EST]"
+        rows.append(f"| {spec.name} | {spec.value} {spec.unit} | {label} |")
+    return rows
 
 
 def chart_for(analysis: Analysis) -> str:

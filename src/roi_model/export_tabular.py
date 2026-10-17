@@ -40,7 +40,7 @@ def write_csv(analysis: Analysis, directory: Path) -> None:
     inputs_path = directory / "inputs.csv"
     with inputs_path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.writer(handle)
-        writer.writerow(["parameter", "value", "unit", "low", "high", "distribution", "rationale"])
+        writer.writerow(["parameter", "value", "unit", "low", "high", "distribution", "illustrative", "rationale"])
         for spec in analysis.case.parameters.values():
             writer.writerow(
                 [
@@ -50,6 +50,7 @@ def write_csv(analysis: Analysis, directory: Path) -> None:
                     spec.low,
                     spec.high,
                     spec.distribution,
+                    "illustrative" if spec.illustrative else "",
                     spec.rationale,
                 ]
             )
@@ -102,18 +103,20 @@ def write_xlsx(analysis: Analysis, path: Path) -> None:
         raise RuntimeError("workbook has no worksheet")
     inputs = active
     inputs.title = "Inputs"
-    inputs.append(["key", "value", "unit", "rationale"])
+    inputs.append(["key", "value", "unit", "illustrative", "rationale"])
     cells: dict[str, str] = {}
     for index, spec in enumerate(analysis.case.parameters.values(), start=2):
         inputs.cell(index, 1, spec.name)
         inputs.cell(index, 2, spec.value)
         inputs.cell(index, 3, spec.unit)
-        inputs.cell(index, 4, spec.rationale)
+        inputs.cell(index, 4, "illustrative" if spec.illustrative else "")
+        inputs.cell(index, 5, spec.rationale)
         cells[spec.name] = f"$B${index}"
     flag_row = len(analysis.case.parameters) + 3
     inputs.cell(flag_row, 1, "use_monthly_volume")
     inputs.cell(flag_row, 2, 1 if analysis.case.volume_mode == "monthly" else 0)
-    inputs.cell(flag_row, 4, "1 when the case is stated per month")
+    inputs.cell(flag_row, 4, "illustrative")
+    inputs.cell(flag_row, 5, "1 when the case is stated per month [EST]")
     _define(workbook, "UseMonthlyVolume", f"Inputs!$B${flag_row}")
     for name, excel_name in EXCEL_NAMES.items():
         if name in cells:
@@ -123,9 +126,11 @@ def write_xlsx(analysis: Analysis, path: Path) -> None:
             blank_row = flag_row + 1
             inputs.cell(blank_row, 1, name)
             inputs.cell(blank_row, 2, 0)
-            inputs.cell(blank_row, 4, "unused in this volume mode")
+            inputs.cell(blank_row, 4, "illustrative")
+            inputs.cell(blank_row, 5, "unused in this volume mode")
             _define(workbook, excel_name, f"Inputs!$B${blank_row}")
             flag_row = blank_row
+    inputs.cell(flag_row + 2, 1, "Illustrative numbers, replace with your own")
 
     model = workbook.create_sheet("Model")
     labels = [

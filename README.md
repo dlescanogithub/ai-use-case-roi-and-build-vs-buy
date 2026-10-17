@@ -1,3 +1,5 @@
+Illustrative numbers, replace with your own
+
 # AI use-case ROI model
 
 A local Python calculator for ROI, payback, break-even and sensitivity of one AI use case. What is tested is the formula: savings identity, break-even, explicit payback, monotonicity in volume, a seeded Monte Carlo, and a gate that must go red when the formula is wrong. It does not test a live model and it does not measure a real business.
@@ -6,7 +8,7 @@ A local Python calculator for ROI, payback, break-even and sensitivity of one AI
 
 A team can talk itself into an agent because the token price looks small and the manual process looks slow. The review time, the errors that remain, the fixed monthly cost and a slow ramp are easy to leave out. This repo puts those pieces in one monthly model so a person can see whether the sketch pays back.
 
-Measured program output, not a business result: on 2026-10-17, package 0.1.0, Python 3.12.3, command `ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template ROI_MC_DRAWS=2000 ROI_SEED=42 python -m roi_model.cli publish-docs` finished in 0.703 seconds and printed a 3-year NPV of **USD 180,923.12** for the fictional refund desk. Inputs are [EST]. The NPV is simulated. The same command's pessimistic scenario never pays back (NPV USD -350,556.83). Full precision is in `docs/results/refund_desk.json`.
+Measured program output, not a business result: on 2026-10-17, package 0.1.0, Python 3.12.3, command `ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template ROI_MC_DRAWS=2000 ROI_SEED=42 python3 -m roi_model.cli publish-docs` finished in 0.728 seconds and printed a 3-year NPV of **USD 180,923.12** for the fictional refund desk. Inputs are illustrative [EST]. The NPV is simulated. The same command's pessimistic scenario never pays back (NPV USD -350,556.83). Full precision is in `docs/results/refund_desk.json`.
 
 ## Demo
 
@@ -39,7 +41,7 @@ flowchart TD
 
 ## Results
 
-All figures below are simulated outputs of package 0.1.0 on 2026-10-17. Command: `ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template ROI_MC_DRAWS=2000 ROI_SEED=42 python -m roi_model.cli publish-docs`. Python 3.12.3. Wall time for that command: 0.703 seconds. Inputs are [EST]. Nothing here is a vendor price.
+All figures below are simulated outputs of package 0.1.0 on 2026-10-17. Command: `ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template ROI_MC_DRAWS=2000 ROI_SEED=42 python3 -m roi_model.cli publish-docs`. Python 3.12.3. Wall time for that command: 0.728 seconds. Inputs are illustrative [EST]. Nothing here is a vendor price.
 
 ### Fictional refund desk (Puerto Gris Parcel Co.)
 
@@ -77,7 +79,7 @@ The pessimistic personal case is "your hour is cheap and you still spend an hour
 
 | Check | Result | Command | Date |
 | --- | --- | --- | --- |
-| Unit tests | 36 passed, coverage 92.85% | `python -m pytest` | 2026-10-17 |
+| Unit tests | 54 passed, coverage 92.60% | `python3 -m pytest` | 2026-10-17 |
 | Eval gate | passed (exit 0) | `python -m roi_model.evalkit` | 2026-10-17 |
 | Forced regression | failed as required (exit 1) | `python -m roi_model.evalkit.regression` | 2026-10-17 |
 | Secret scan | no findings | `python -m roi_model.secretscan` | 2026-10-17 |
@@ -100,7 +102,7 @@ Client-style cases use a fictional company or no company. They are patterns, not
 
 | Control | Where |
 | --- | --- |
-| Inputs are assumptions, each with a rationale that must contain `[EST]` | `assumptions/*.yaml`, `src/roi_model/assumptions.py` |
+| Inputs are illustrative assumptions, each with `illustrative: true` and a rationale that must contain `[EST]` | `assumptions/*.yaml`, `src/roi_model/assumptions.py` |
 | Human approval | The report says the model does not approve. There is no approve command |
 | Traceability | `trace.jsonl` on each run (`src/roi_model/trace.py`). One-pagers name the command, version and generation time |
 | Risks | [docs/RISKS.md](docs/RISKS.md) |
@@ -150,7 +152,7 @@ Deployment Strategist conversation: start with discovery ([docs/DISCOVERY.md](do
 | CSV, formula XLSX, Markdown, HTML, inline SVG | Implemented |
 | EN/ES one-pagers for the refund desk and the weekly-report example | Implemented |
 | Invariant eval gate and forced regression | Implemented |
-| Measured per-run cost slot | Implemented as an input override. No measured figure is shipped |
+| Measured per-run cost slot | The 23-case eval bill is recorded in `assumptions/measured_eval_run_cost.yaml` and is not applied to the invented inputs. A separate per-item override still exists |
 | Contact-center deflection, document processing, personal subscription versus benefit | Design only |
 | Live connectors and dashboards | Design only |
 
@@ -175,8 +177,8 @@ Configuration is environment-only. See `.env.example`. This program does not aut
 
 ## Next steps
 
-- Replace [EST] inputs with measurements, one field at a time, and keep the old file in git.
-- If a per-run cost is measured elsewhere, pass it with `--measured-cost` and a file whose status is `measured`. Do not paste a price-page number and call it measured.
+- Replace illustrative `[EST]` inputs with measurements, one field at a time, and keep the old file in git. Steps: [docs/REPLACE_THE_ASSUMPTIONS.md](docs/REPLACE_THE_ASSUMPTIONS.md).
+- The measured 23-case eval bill is already recorded and is not a per-item cost. A per-item override is a different file with `status: measured` and `--measured-cost`. Do not paste a price-page number and call it measured.
 - Design-only cases stay out of the result tables until their parameters exist.
 - A dashboard or a live connector is a later phase, not a patch on this calculator.
 
@@ -192,5 +194,7 @@ Configuration is environment-only. See `.env.example`. This program does not aut
 - [docs/RUNBOOK.md](docs/RUNBOOK.md)
 - [docs/architecture.md](docs/architecture.md)
 - [docs/ADAPT_TO_A_REAL_CLIENT.md](docs/ADAPT_TO_A_REAL_CLIENT.md)
+- [docs/REPLACE_THE_ASSUMPTIONS.md](docs/REPLACE_THE_ASSUMPTIONS.md)
+- [docs/RELATION_TO_BUILD_VS_BUY.md](docs/RELATION_TO_BUILD_VS_BUY.md)
 - [docs/ONE_PAGER_EN.md](docs/ONE_PAGER_EN.md), [docs/ONE_PAGER_ES.md](docs/ONE_PAGER_ES.md)
 - [docs/PROVENANCE.md](docs/PROVENANCE.md)

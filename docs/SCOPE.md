@@ -8,7 +8,7 @@ A deterministic monthly model, validation, tornado, three named scenarios, seede
 
 Exit criteria for this phase, checked in this repo:
 
-- `python -m pytest` coverage at least 80% (measured 92.85% on 2026-10-17, 36 passed).
+- `python3 -m pytest` coverage at least 80% (measured 92.60% on 2026-10-17, 54 passed).
 - `python -m roi_model.evalkit` exits 0.
 - `python -m roi_model.evalkit.regression` exits non-zero.
 - One-pagers match the assumption files and are tagged [EST] / simulated.

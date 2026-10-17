@@ -11,7 +11,7 @@
 PYTHON ?= python3
 export ROI_ENABLE_REAL_PROVIDER ?= 0
 
-.PHONY: setup lint format typecheck test eval demo eval-regression secrets
+.PHONY: setup lint format typecheck test eval demo eval-regression secrets secretscan-hash
 
 setup:
 	$(PYTHON) -m pip install -e ".[dev]"
@@ -39,5 +39,8 @@ eval-regression:
 demo:
 	ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template $(PYTHON) -m roi_model.cli demo
 
-secrets:
+secrets: secretscan-hash
 	$(PYTHON) -m roi_model.secretscan
+
+secretscan-hash:
+	$(PYTHON) -c "import hashlib, pathlib, sys; digest = hashlib.sha256(pathlib.Path('src/roi_model/secretscan.py').read_bytes()).hexdigest(); text = pathlib.Path('docs/PROVENANCE.md').read_text(encoding='utf-8'); print(digest); sys.exit(0 if digest in text else 1)"

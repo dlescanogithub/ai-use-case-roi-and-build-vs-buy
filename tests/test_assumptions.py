@@ -23,6 +23,8 @@ def test_refund_and_weekly_cases_load() -> None:
     assert refund.volume_mode == "daily"
     assert weekly.volume_mode == "monthly"
     assert "[EST]" in refund.parameters["volume_per_day"].rationale
+    assert refund.parameters["volume_per_day"].illustrative is True
+    assert all(spec.illustrative for spec in weekly.parameters.values())
     assumptions = assumptions_from_case(refund)
     assert assumptions.volume_per_day == pytest.approx(120)
     assert assumptions.agent_cost_per_run > 0
@@ -48,6 +50,21 @@ def test_measured_override_replaces_token_price() -> None:
     finally:
         path.unlink()
     assert updated.agent_cost_per_run == pytest.approx(0.25)
+
+
+def test_eval_run_bill_is_not_applied_as_a_per_item_cost() -> None:
+    case = load_case(ROOT / "assumptions" / "refund_desk.yaml")
+    base = assumptions_from_case(case)
+    with pytest.raises(AssumptionError, match="not a per-item override"):
+        apply_measured_cost(base, ROOT / "assumptions" / "measured_eval_run_cost.yaml")
+
+
+def test_illustrative_flag_is_required(tmp_path: Path) -> None:
+    text = (ROOT / "assumptions" / "weekly_report.yaml").read_text(encoding="utf-8")
+    path = tmp_path / "missing.yaml"
+    path.write_text(text.replace("    illustrative: true\n", "", 1), encoding="utf-8")
+    with pytest.raises(AssumptionError, match="illustrative"):
+        load_case(path)
 
 
 def test_stub_measured_file_is_refused() -> None:

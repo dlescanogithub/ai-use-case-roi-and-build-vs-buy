@@ -54,6 +54,7 @@ class Parameter:
     unit: str
     distribution: Distribution
     rationale: str
+    illustrative: bool
 
 
 @dataclass(frozen=True)
@@ -198,7 +199,7 @@ def validate_assumptions(assumptions: Assumptions) -> None:
 
 def _parameter(name: str, raw: object) -> Parameter:
     body = _mapping(raw, name)
-    expected = {"value", "low", "high", "unit", "distribution", "rationale"}
+    expected = {"value", "low", "high", "unit", "distribution", "rationale", "illustrative"}
     missing = expected - set(body)
     extra = set(body) - expected
     if missing or extra:
@@ -215,6 +216,8 @@ def _parameter(name: str, raw: object) -> Parameter:
     rationale = _text(body["rationale"], f"{name}.rationale")
     if "[EST]" not in rationale:
         raise AssumptionError(f"{name}.rationale must include [EST]")
+    if body.get("illustrative") is not True:
+        raise AssumptionError(f"{name}.illustrative must be true")
     if name in RATE_PARAMETERS and not (low >= 0 and high <= 1):
         raise AssumptionError(f"{name} low/high must stay inside [0, 1]")
     if name == "discount_rate_annual" and high >= 1:
@@ -229,6 +232,7 @@ def _parameter(name: str, raw: object) -> Parameter:
         unit=unit,
         distribution=distribution,
         rationale=rationale,
+        illustrative=True,
     )
 
 
@@ -369,6 +373,10 @@ def apply_measured_cost(assumptions: Assumptions, path: Path) -> Assumptions:
     """
     raw = _read_yaml(path)
     doc = _mapping(raw, "measured cost")
+    if doc.get("kind") == "eval_run_bill" or "runs" in doc:
+        raise AssumptionError(
+            "eval-run bill is not a per-item override; the /23 conversion is [EST] and is not applied"
+        )
     if doc.get("status") != "measured":
         raise AssumptionError("measured cost file is applied only when status is measured")
     value = _number(doc.get("agent_cost_per_run"), "agent_cost_per_run")

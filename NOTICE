@@ -1,3 +1,5 @@
-This repository implements its own eval helpers (cassette replay, fake provider, JSONL trace, JSON logging, secret scan).
+This repository includes small utilities that are also maintained, in parallel, in other portfolio repositories: a cassette provider, invariant checks, a JSON trace, structured logging, and the secret scanner in src/roi_model/secretscan.py.
 
-It is not a byte-for-byte copy of agent-runtime-evals. See docs/PROVENANCE.md.
+Those utilities are kept aligned on purpose. The ROI model around them was written for this repository. Nothing in this tree is copied from employer work or from a client engagement.
+
+See docs/PROVENANCE.md for the secret-scanner hash.

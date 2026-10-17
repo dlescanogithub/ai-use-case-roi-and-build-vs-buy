@@ -1,4 +1,8 @@
-"""Lightweight secret scan for CI and pre-commit. Not a substitute for a human review."""
+"""Secret scan for CI and pre-commit.
+
+Vendored utility. Keep this file identical across portfolio repos.
+Not a substitute for a human review.
+"""
 
 from __future__ import annotations
 
@@ -8,13 +12,18 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+# Specific shapes come before broader ones. A line can match more than one rule.
 PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("aws_access_key", re.compile(r"AKIA[0-9A-Z]{16}")),
     ("private_key", re.compile(r"-----BEGIN (?:RSA |OPENSSH |EC |DSA )?PRIVATE KEY-----")),
     ("github_pat", re.compile(r"github_pat_[A-Za-z0-9_]{20,}")),
     ("github_token", re.compile(r"ghp_[A-Za-z0-9]{20,}")),
+    ("xai_key", re.compile(r"xai-[A-Za-z0-9._~-]{20,}")),
+    ("anthropic_key", re.compile(r"sk-ant-[A-Za-z0-9._~-]{20,}")),
+    ("openai_key", re.compile(r"sk-(?:proj-)?[A-Za-z0-9._~-]{20,}")),
+    ("elevenlabs_key", re.compile(r"sk_[A-Za-z0-9]{20,}")),
+    ("bearer_token", re.compile(r"Bearer [A-Za-z0-9._~+/-]{20,}")),
     ("slack_token", re.compile(r"xox[baprs]-[A-Za-z0-9-]{10,}")),
-    ("openai_key", re.compile(r"sk-[A-Za-z0-9]{20,}")),
     ("slack_webhook", re.compile(r"hooks\.slack\.com/services/")),
 )
 
@@ -61,7 +70,7 @@ def scan(root: Path) -> list[Finding]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(prog="roi-secretscan")
+    parser = argparse.ArgumentParser(prog="secretscan")
     parser.add_argument("--root", default=".", type=Path)
     args = parser.parse_args(argv)
     findings = scan(args.root)

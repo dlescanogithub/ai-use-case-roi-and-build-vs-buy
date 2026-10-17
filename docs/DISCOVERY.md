@@ -20,8 +20,8 @@ Ten questions. Each one fills an input. The answer changes the design, not just 
 6. **What fraction of items must a person still open, and how many minutes is that open?**  
    Fills `review_rate` and `review_minutes`. If the answer is "all of them, for as long as the old task", the agent does not pay. The weekly example sets review rate to 1 on purpose. The refund pessimistic set raises review rate to 0.85 and the case never pays back.
 
-7. **How many tokens does one run use, and what price are you willing to assume?**  
-   Fills `input_tokens`, `output_tokens` and the two illustrative prices per million. Those prices are [EST], not a vendor page. If you have a measured per-run cost, do not use these fields: pass a measured-cost file. A stub is ignored.
+7. **How many tokens does one production item use, and what price are you willing to assume?**  
+   Fills `input_tokens`, `output_tokens` and the two illustrative prices per million. Those prices are [EST], not a vendor page. A measured 23-case eval bill is already recorded in `assumptions/measured_eval_run_cost.yaml` (2026-10-17, commit `c1efdfd`) and is not one of these fields. Splitting that bill by 23 is [EST] and is not applied. A per-item override is a different file. See `docs/REPLACE_THE_ASSUMPTIONS.md`.
 
 8. **What is the one-time cost to put it in, and what is the fixed cost every month after that?**  
    Fills `implementation_cost` and `monthly_run_cost`. The fixed cost is charged in full during the ramp (ADR 0001). If the team forgets platform and on-call, payback looks shorter than the desk will live.
