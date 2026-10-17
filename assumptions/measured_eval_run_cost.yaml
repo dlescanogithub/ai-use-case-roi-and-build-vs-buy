@@ -1,0 +1,58 @@
+schema_version: 1
+status: measured
+kind: eval_run_bill
+source_repo: agent-runtime-evals
+commit: c1efdfd
+measured_on: "2026-10-17"
+provider: xAI
+price_page: https://docs.x.ai/docs/models
+price_page_fetched: "2026-10-17"
+cases: 23
+applies_to_case_inputs: false
+conversion:
+  formula: per_production_item_usd = billed_eval_run_usd / 23
+  status: "[EST]"
+  assumption: >
+    One production refund costs the same as one case inside this 23-case
+    eval run. The billed dollars, the token counts and the case count are
+    measured. This equality is not. It is not applied to the invented
+    case inputs in refund_desk.yaml or weekly_report.yaml.
+list_prices:
+  context: short context, prompt under 200k tokens
+  note: >
+    Short-context list price times the token counts does not equal the
+    billed sample. The measured figure is the billed total. The
+    non-reasoning sample is recorded as non-reasoning; the list-price row
+    used for that reconstruction is grok-4.20-0309-non-reasoning on the
+    price page fetched the same day. This file does not claim a model id
+    for that sample beyond non-reasoning.
+  models:
+    - id: grok-4.20-0309-non-reasoning
+      input_per_million: "1.25"
+      cached_input_per_million: "0.20"
+      output_per_million: "2.50"
+    - id: grok-4.3
+      input_per_million: "1.25"
+      cached_input_per_million: "0.20"
+      output_per_million: "2.50"
+runs:
+  - id: non-reasoning
+    billed_usd_low: "0.036"
+    billed_usd_high: "0.037"
+    input_tokens_low: 66000
+    input_tokens_high: 70000
+    output_tokens_low: 3000
+    output_tokens_high: 3400
+    reasoning_tokens: null
+    token_phrase: about 66-70k input / 3-3.4k output tokens
+    list_price_model: grok-4.20-0309-non-reasoning
+  - id: grok-4.3
+    billed_usd_low: "0.072"
+    billed_usd_high: "0.072"
+    input_tokens_low: 62700
+    input_tokens_high: 62700
+    output_tokens_low: 14500
+    output_tokens_high: 14500
+    reasoning_tokens: 11600
+    token_phrase: 62.7k input / 14.5k output, including about 11.6k reasoning tokens
+    list_price_model: grok-4.3

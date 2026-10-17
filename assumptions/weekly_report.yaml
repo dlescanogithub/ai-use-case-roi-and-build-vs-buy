@@ -1,0 +1,164 @@
+schema_version: 1
+# [EST] Every number below is illustrative. Replace it before anyone uses it.
+case:
+  id: weekly-report
+  title: Weekly report automation
+  company: Personal desk
+  status: implemented
+  fictional: true
+  currency: USD
+  narrative: >
+    Personal example only. Four reports a month, written by hand today.
+    You still read every draft. The hourly rate is what you assume your time
+    is worth. It is not a salary and not an employer figure.
+  narrative_es: >
+    Ejemplo personal, nada más. Cuatro reportes por mes, hoy escritos a mano.
+    Igual leés cada borrador. El valor de la hora es lo que vos suponés que
+    vale tu tiempo. No es un sueldo y no es un dato de un empleador.
+  measured_cost_slot: >
+    [EST] Token prices in this file stay invented. The measured 23-case eval
+    bill lives in assumptions/measured_eval_run_cost.yaml and is not a weekly
+    report. The [EST] split of that bill by 23 is not applied here.
+horizon_months: 36
+parameters:
+  volume_per_month:
+    value: 4
+    low: 2
+    high: 8
+    unit: items/month
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] One report a week, counted as four a month."
+  manual_minutes_per_item:
+    value: 90
+    low: 45
+    high: 150
+    unit: minutes
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] Time to gather numbers and write the report without an agent."
+  loaded_cost_per_hour:
+    value: 40
+    low: 15
+    high: 80
+    unit: USD/hour
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] What you assume an hour of your own time is worth. Not a wage."
+  manual_error_rate:
+    value: 0.05
+    low: 0.01
+    high: 0.15
+    unit: fraction
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] Share of hand-written reports you have to redo because a figure was wrong."
+  agent_error_rate:
+    value: 0.02
+    low: 0.005
+    high: 0.08
+    unit: fraction
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] Residual mistakes you still expect after you read the draft."
+  cost_of_error:
+    value: 20
+    low: 5
+    high: 50
+    unit: USD/error
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] Rework cost of one wrong report. Illustrative."
+  input_tokens:
+    value: 8000
+    low: 3000
+    high: 20000
+    unit: tokens
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] Notes pasted into a prompt. Not a measured trace."
+  output_tokens:
+    value: 2500
+    low: 800
+    high: 6000
+    unit: tokens
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] Length of a draft report. Not a measured completion."
+  input_price_per_million:
+    value: 1.5
+    low: 0.5
+    high: 5
+    unit: USD/1M tokens
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] Illustrative blended price. Not a vendor price page."
+  output_price_per_million:
+    value: 6
+    low: 2
+    high: 15
+    unit: USD/1M tokens
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] Illustrative blended price. Not a vendor price page."
+  review_minutes:
+    value: 20
+    low: 5
+    high: 60
+    unit: minutes
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] You still read the draft. If this reaches 90, the labor savings disappear."
+  review_rate:
+    value: 1
+    low: 0.5
+    high: 1
+    unit: fraction
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] In this personal example every report is reviewed. The low side is a sensitivity, not a policy."
+  implementation_cost:
+    value: 300
+    low: 0
+    high: 2000
+    unit: USD
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] An evening of setup, priced at the same assumed hourly rate. Not an invoice."
+  monthly_run_cost:
+    value: 20
+    low: 0
+    high: 80
+    unit: USD/month
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] A slice of a personal subscription. Not a real plan price."
+  adoption_ramp_months:
+    value: 1
+    low: 0
+    high: 3
+    unit: months
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] You either use it next month or you do not."
+  discount_rate_annual:
+    value: 0.08
+    low: 0.03
+    high: 0.15
+    unit: fraction
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] A personal discount rate for a 3-year sketch. Not a market rate."
+# [EST] illustrative overrides of the base inputs. Not measurements.
+scenarios:
+  pessimistic:
+    loaded_cost_per_hour: 15
+    review_minutes: 60
+    manual_minutes_per_item: 50
+    monthly_run_cost: 60
+  base: {}
+  optimistic:
+    loaded_cost_per_hour: 70
+    review_minutes: 8
+    manual_minutes_per_item: 120
+    monthly_run_cost: 0

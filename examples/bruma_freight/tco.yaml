@@ -1,0 +1,220 @@
+# [EST] illustrative costs. Simulated. Replace with your own.
+illustrative: true
+case_id: bruma_freight
+org: Bruma Freight
+title: Internal support agent for shipment-exception tickets
+as_of: "2026-10-17"
+currency: USD
+horizon_years: 3
+fictional: true
+simulated: true
+assumptions:
+  volume_growth_per_year:
+    value: "0.15"
+    unit: fraction
+    source: fictional planning assumption for this worked example
+    date: "2026-10-17"
+    estimate: true
+    marker: "[EST] illustrative"
+build:
+  engineering_hours:
+    value: "500"
+    unit: hours
+    source: fictional planning assumption for this worked example
+    date: "2026-10-17"
+    estimate: true
+    marker: "[EST] illustrative"
+  engineering_rate_per_hour:
+    value: "95"
+    unit: USD
+    source: fictional blended rate for this worked example
+    date: "2026-10-17"
+    estimate: true
+    marker: "[EST] illustrative"
+  infra_per_year:
+    value: "3600"
+    unit: USD
+    source: fictional planning assumption for this worked example
+    date: "2026-10-17"
+    estimate: true
+    marker: "[EST] illustrative"
+  runs_per_year:
+    value: "24000"
+    unit: runs
+    source: fictional volume for a single operations desk
+    date: "2026-10-17"
+    estimate: true
+    marker: "[EST] illustrative"
+  tokens_per_run:
+    value: "2500"
+    unit: tokens
+    source: fictional prompt-plus-context size for a ticket draft
+    date: "2026-10-17"
+    estimate: true
+    marker: "[EST] illustrative"
+  cost_per_1k_tokens:
+    value: "0.004"
+    unit: USD
+    source: fictional model price used only inside this example
+    date: "2026-10-17"
+    estimate: true
+    marker: "[EST] illustrative"
+  maintenance_pct_of_initial_build:
+    value: "0.20"
+    unit: fraction
+    source: fictional planning assumption for this worked example
+    date: "2026-10-17"
+    estimate: true
+    marker: "[EST] illustrative"
+  eval_ops_hours_per_year:
+    value: "120"
+    unit: hours
+    source: fictional planning assumption for this worked example
+    date: "2026-10-17"
+    estimate: true
+    marker: "[EST] illustrative"
+  review_hours_per_year:
+    value: "60"
+    unit: hours
+    source: fictional human review time for drafted replies
+    date: "2026-10-17"
+    estimate: true
+    marker: "[EST] illustrative"
+buy_options:
+  - id: vendor_a
+    label: Vendor A - Harborline Desk
+    vendor: Vendor A
+    seats:
+      value: "12"
+      unit: seats
+      source: fictional desk headcount for this worked example
+      date: "2026-10-17"
+      estimate: true
+      marker: "[EST] illustrative"
+    license_per_seat_per_year:
+      value: "4200"
+      unit: USD
+      source: fictional list price for this worked example
+      date: "2026-10-17"
+      estimate: true
+      marker: "[EST] illustrative"
+    integration_hours:
+      value: "100"
+      unit: hours
+      source: fictional planning assumption for this worked example
+      date: "2026-10-17"
+      estimate: true
+      marker: "[EST] illustrative"
+    integration_rate_per_hour:
+      value: "95"
+      unit: USD
+      source: fictional blended rate for this worked example
+      date: "2026-10-17"
+      estimate: true
+      marker: "[EST] illustrative"
+    exit_cost:
+      value: "28000"
+      unit: USD
+      source: fictional exit allowance for workflow rebuild and export work
+      date: "2026-10-17"
+      estimate: true
+      marker: "[EST] illustrative"
+    annual_price_increase:
+      value: "0.08"
+      unit: fraction
+      source: fictional price-increase assumption for this worked example
+      date: "2026-10-17"
+      estimate: true
+      marker: "[EST] illustrative"
+    usage_tiers:
+      - up_to_runs: 10000
+        price_per_run:
+          value: "0.03"
+          unit: USD
+          source: fictional usage tier for this worked example
+          date: "2026-10-17"
+          estimate: true
+          marker: "[EST] illustrative"
+      - up_to_runs: null
+        price_per_run:
+          value: "0.02"
+          unit: USD
+          source: fictional usage tier for this worked example
+          date: "2026-10-17"
+          estimate: true
+          marker: "[EST] illustrative"
+  - id: vendor_b
+    label: Vendor B - Quayloop
+    vendor: Vendor B
+    seats:
+      value: "12"
+      unit: seats
+      source: fictional desk headcount for this worked example
+      date: "2026-10-17"
+      estimate: true
+      marker: "[EST] illustrative"
+    license_per_seat_per_year:
+      value: "1500"
+      unit: USD
+      source: fictional list price for this worked example
+      date: "2026-10-17"
+      estimate: true
+      marker: "[EST] illustrative"
+    integration_hours:
+      value: "40"
+      unit: hours
+      source: fictional planning assumption for this worked example
+      date: "2026-10-17"
+      estimate: true
+      marker: "[EST] illustrative"
+    integration_rate_per_hour:
+      value: "95"
+      unit: USD
+      source: fictional blended rate for this worked example
+      date: "2026-10-17"
+      estimate: true
+      marker: "[EST] illustrative"
+    exit_cost:
+      value: "60000"
+      unit: USD
+      source: fictional exit allowance for a weak export path
+      date: "2026-10-17"
+      estimate: true
+      marker: "[EST] illustrative"
+    annual_price_increase:
+      value: "0.12"
+      unit: fraction
+      source: fictional price-increase assumption for this worked example
+      date: "2026-10-17"
+      estimate: true
+      marker: "[EST] illustrative"
+    usage_tiers:
+      - up_to_runs: null
+        price_per_run:
+          value: "0.08"
+          unit: USD
+          source: fictional usage price for this worked example
+          date: "2026-10-17"
+          estimate: true
+          marker: "[EST] illustrative"
+scenarios:
+  - id: base
+    label: Base
+    engineering_hours_multiplier: "1"
+    runs_multiplier: "1"
+    annual_price_increase_override: null
+  - id: build_overrun
+    label: Build hours x1.5
+    engineering_hours_multiplier: "1.5"
+    runs_multiplier: "1"
+    annual_price_increase_override: null
+  - id: price_shock
+    label: Buy price increase 20 percent
+    engineering_hours_multiplier: "1"
+    runs_multiplier: "1"
+    annual_price_increase_override: "0.20"
+  - id: volume_spike
+    label: Run volume x2
+    engineering_hours_multiplier: "1"
+    runs_multiplier: "2"
+    annual_price_increase_override: null

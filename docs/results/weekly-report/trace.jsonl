@@ -1,0 +1,4 @@
+{"action": "read_assumptions", "cost": 0.0}
+{"action": "provider_replay", "cost": 0.0, "provider": "template", "text": "Planning sketch only. The report stays on disk. Prompt weekly-commentary did not approve an external action."}
+{"action": "compute", "cost": 0.0}
+{"action": "write_report", "cost": 0.0}

@@ -1,0 +1,180 @@
+schema_version: 1
+# [EST] Every number below is illustrative. Replace it before anyone uses it.
+case:
+  id: refund-desk
+  title: Refund desk agent
+  company: Puerto Gris Parcel Co.
+  status: implemented
+  fictional: true
+  currency: USD
+  narrative: >
+    Puerto Gris Parcel Co. is a fictional carrier. A back-office agent would
+    draft refund decisions for returned parcels. A person still approves the
+    ones the policy sends to review. None of these figures are measurements.
+  narrative_es: >
+    Puerto Gris Parcel Co. es una empresa de paquetes inventada. Un agente de
+    back-office redactaría la decisión de un reembolso. Una persona sigue
+    aprobando los casos que la política manda a revisión. Ninguna de estas
+    cifras es una medición.
+  measured_cost_slot: >
+    [EST] Token prices in this file stay invented. The measured 23-case eval
+    bill is a separate record in assumptions/measured_eval_run_cost.yaml
+    (agent-runtime-evals commit c1efdfd, 2026-10-17). Dividing that bill by
+    23 is an [EST] conversion and is not applied to these inputs.
+horizon_months: 36
+parameters:
+  volume_per_day:
+    value: 120
+    low: 70
+    high: 180
+    unit: items/day
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] Planning volume for a mid-size fictional returns desk, not a count from a warehouse."
+  working_days_per_month:
+    value: 21
+    low: 20
+    high: 23
+    unit: days/month
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] A conventional business month. It is not this company's calendar."
+  manual_minutes_per_item:
+    value: 12
+    low: 8
+    high: 18
+    unit: minutes
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] Time to read a return, check policy and type a decision without an agent."
+  loaded_cost_per_hour:
+    value: 32
+    low: 24
+    high: 45
+    unit: USD/hour
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] Loaded desk cost, not a wage from a payroll system."
+  manual_error_rate:
+    value: 0.06
+    low: 0.02
+    high: 0.12
+    unit: fraction
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] Share of manual decisions that need rework or a goodwill payment."
+  agent_error_rate:
+    value: 0.02
+    low: 0.005
+    high: 0.06
+    unit: fraction
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] Residual errors after the review policy. Not a measured model score."
+  cost_of_error:
+    value: 25
+    low: 10
+    high: 60
+    unit: USD/error
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] Average cost of one bad refund decision, goodwill plus rework."
+  input_tokens:
+    value: 1800
+    low: 800
+    high: 4000
+    unit: tokens
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] Prompt size for one case file. Not a trace from a provider."
+  output_tokens:
+    value: 400
+    low: 150
+    high: 1200
+    unit: tokens
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] Draft length. Not a measured completion."
+  input_price_per_million:
+    value: 1.5
+    low: 0.5
+    high: 5
+    unit: USD/1M tokens
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] Illustrative blended price. Not copied from a vendor price page."
+  output_price_per_million:
+    value: 6
+    low: 2
+    high: 15
+    unit: USD/1M tokens
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] Illustrative blended price. Not copied from a vendor price page."
+  review_minutes:
+    value: 5
+    low: 2
+    high: 10
+    unit: minutes
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] Time a person spends when a case is routed to review."
+  review_rate:
+    value: 0.5
+    low: 0.15
+    high: 0.9
+    unit: fraction
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] Share of cases a person still opens. The rest are not auto-approved by this model."
+  implementation_cost:
+    value: 180000
+    low: 80000
+    high: 300000
+    unit: USD
+    illustrative: true
+    distribution: pert
+    rationale: "[EST] One-time build, integration and change-management sketch. Not a quote."
+  monthly_run_cost:
+    value: 2500
+    low: 800
+    high: 6000
+    unit: USD/month
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] Fixed monthly platform and on-call cost. Charged in full during the ramp."
+  adoption_ramp_months:
+    value: 6
+    low: 2
+    high: 14
+    unit: months
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] Months until the desk uses the agent on every case."
+  discount_rate_annual:
+    value: 0.10
+    low: 0.05
+    high: 0.18
+    unit: fraction
+    illustrative: true
+    distribution: triangular
+    rationale: "[EST] Annual discount rate for a 3-year NPV. Not a treasury rate."
+# [EST] illustrative overrides of the base inputs. Not measurements.
+scenarios:
+  pessimistic:
+    volume_per_day: 70
+    manual_minutes_per_item: 8
+    review_rate: 0.85
+    agent_error_rate: 0.05
+    implementation_cost: 280000
+    adoption_ramp_months: 12
+    monthly_run_cost: 5000
+  base: {}
+  optimistic:
+    volume_per_day: 170
+    manual_minutes_per_item: 16
+    review_rate: 0.2
+    agent_error_rate: 0.008
+    implementation_cost: 90000
+    adoption_ramp_months: 3
+    monthly_run_cost: 1200

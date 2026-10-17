@@ -1,0 +1,17 @@
+parameter,value,unit,low,high,distribution,illustrative,rationale
+volume_per_month,4.0,items/month,2.0,8.0,triangular,illustrative,"[EST] One report a week, counted as four a month."
+manual_minutes_per_item,90.0,minutes,45.0,150.0,pert,illustrative,[EST] Time to gather numbers and write the report without an agent.
+loaded_cost_per_hour,40.0,USD/hour,15.0,80.0,pert,illustrative,[EST] What you assume an hour of your own time is worth. Not a wage.
+manual_error_rate,0.05,fraction,0.01,0.15,pert,illustrative,[EST] Share of hand-written reports you have to redo because a figure was wrong.
+agent_error_rate,0.02,fraction,0.005,0.08,pert,illustrative,[EST] Residual mistakes you still expect after you read the draft.
+cost_of_error,20.0,USD/error,5.0,50.0,pert,illustrative,[EST] Rework cost of one wrong report. Illustrative.
+input_tokens,8000.0,tokens,3000.0,20000.0,triangular,illustrative,[EST] Notes pasted into a prompt. Not a measured trace.
+output_tokens,2500.0,tokens,800.0,6000.0,triangular,illustrative,[EST] Length of a draft report. Not a measured completion.
+input_price_per_million,1.5,USD/1M tokens,0.5,5.0,triangular,illustrative,[EST] Illustrative blended price. Not a vendor price page.
+output_price_per_million,6.0,USD/1M tokens,2.0,15.0,triangular,illustrative,[EST] Illustrative blended price. Not a vendor price page.
+review_minutes,20.0,minutes,5.0,60.0,pert,illustrative,"[EST] You still read the draft. If this reaches 90, the labor savings disappear."
+review_rate,1.0,fraction,0.5,1.0,triangular,illustrative,"[EST] In this personal example every report is reviewed. The low side is a sensitivity, not a policy."
+implementation_cost,300.0,USD,0.0,2000.0,pert,illustrative,"[EST] An evening of setup, priced at the same assumed hourly rate. Not an invoice."
+monthly_run_cost,20.0,USD/month,0.0,80.0,triangular,illustrative,[EST] A slice of a personal subscription. Not a real plan price.
+adoption_ramp_months,1.0,months,0.0,3.0,triangular,illustrative,[EST] You either use it next month or you do not.
+discount_rate_annual,0.08,fraction,0.03,0.15,triangular,illustrative,[EST] A personal discount rate for a 3-year sketch. Not a market rate.

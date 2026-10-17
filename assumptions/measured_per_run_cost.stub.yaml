@@ -1,0 +1,12 @@
+schema_version: 1
+status: stub
+agent_cost_per_run: null
+source: "not applied"
+note: >
+  Stub only. This file is not the measured eval bill and it is not applied.
+  The measured 23-case sample is assumptions/measured_eval_run_cost.yaml.
+  That sample is per eval run, not per production item. Do not pass it to
+  --measured-cost. A per-item override is a different file with status
+  measured, a non-negative agent_cost_per_run, and a source that names the
+  measurement command and date. Do not paste a price-page figure and call
+  it measured.

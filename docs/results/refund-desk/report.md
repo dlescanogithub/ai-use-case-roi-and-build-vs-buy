@@ -1,0 +1,133 @@
+Illustrative numbers, replace with your own
+
+# ROI report: Refund desk agent
+
+- Generated: 2026-10-17T15:53:00.293199+00:00
+- Command: `python -m roi_and_build_vs_buy roi publish-docs`
+- Package version: 0.2.0
+- Git revision: 6d55a15
+- Data: 100% synthetic. Every input is illustrative [EST].
+- Outputs: simulated.
+- Company: Puerto Gris Parcel Co. (fictional).
+
+## Decision
+
+This model does not approve an action, send a message, or spend money.
+A person has to read the assumptions and decide.
+
+## Result
+
+| Metric | Value |
+| --- | --- |
+| Net monthly savings, steady state | USD 12,775.15 |
+| Payback | 17.08 months |
+| Break-even volume | 412.43 items/month (steady-state monthly volume where net monthly savings are zero) |
+| 3-year NPV | USD 180,923.12 |
+| Cost per completed item, with reviewer time | USD 1.34 |
+| Quality-adjusted savings per item | USD 6.06 |
+| Residual error cost per item | USD 0.50 |
+
+## Unit economics [EST]
+
+| Piece | Per item |
+| --- | --- |
+| Manual labor | USD 6.40 |
+| Manual expected error | USD 1.50 |
+| Agent run (tokens x price, or measured override) | USD 0.01 |
+| Reviewer time | USD 1.33 |
+| Residual error | USD 0.50 |
+
+## Scenarios (simulated)
+
+| Scenario | Net monthly | Payback | NPV |
+| --- | --- | --- | --- |
+| pessimistic | -USD 1,700.00 | never (steady-state net monthly savings are not positive; the case never pays back) | -USD 350,556.83 |
+| base | USD 12,775.15 | 17.08 months | USD 180,923.12 |
+| optimistic | USD 31,982.79 | 3.85 months | USD 874,596.57 |
+
+## Monte Carlo (simulated)
+
+Draws: 2000. Seed: 42.
+
+|  | P10 | P50 | P90 |
+| --- | --- | --- | --- |
+| NPV | -USD 5,178.08 | USD 167,292.34 | USD 380,101.33 |
+| Net monthly | USD 7,382.58 | USD 12,884.66 | USD 20,553.62 |
+
+## Which assumptions move the result most
+
+Tornado (absolute swing of 3-year NPV):
+
+| Parameter | Low NPV | High NPV | Swing (high minus low) |
+| --- | --- | --- | --- |
+| volume_per_day | -USD 1,947.41 | USD 400,367.75 | USD 402,315.16 |
+| manual_minutes_per_item | USD 26,458.58 | USD 412,619.92 | USD 386,161.34 |
+| loaded_cost_per_hour | USD 89,209.80 | USD 329,957.26 | USD 240,747.46 |
+| implementation_cost | USD 280,923.12 | USD 60,923.12 | -USD 220,000.00 |
+| manual_error_rate | USD 108,517.86 | USD 289,531.00 | USD 181,013.13 |
+| monthly_run_cost | USD 233,940.10 | USD 71,770.51 | -USD 162,169.58 |
+| review_minutes | USD 238,847.32 | USD 84,382.78 | -USD 154,464.54 |
+| cost_of_error | USD 137,479.97 | USD 282,290.47 | USD 144,810.50 |
+
+Rank correlation of each draw with NPV (Spearman):
+
+- manual_minutes_per_item: 0.499
+- volume_per_day: 0.489
+- loaded_cost_per_hour: 0.318
+- implementation_cost: -0.305
+- manual_error_rate: 0.264
+- review_rate: -0.208
+- cost_of_error: 0.197
+- monthly_run_cost: -0.192
+
+## Assumptions
+
+| Parameter | Value | Label | Range | Why it is here |
+| --- | --- | --- | --- | --- |
+| volume_per_day | 120.0 items/day | illustrative [EST] | 70.0 to 180.0 | [EST] Planning volume for a mid-size fictional returns desk, not a count from a warehouse. |
+| working_days_per_month | 21.0 days/month | illustrative [EST] | 20.0 to 23.0 | [EST] A conventional business month. It is not this company's calendar. |
+| manual_minutes_per_item | 12.0 minutes | illustrative [EST] | 8.0 to 18.0 | [EST] Time to read a return, check policy and type a decision without an agent. |
+| loaded_cost_per_hour | 32.0 USD/hour | illustrative [EST] | 24.0 to 45.0 | [EST] Loaded desk cost, not a wage from a payroll system. |
+| manual_error_rate | 0.06 fraction | illustrative [EST] | 0.02 to 0.12 | [EST] Share of manual decisions that need rework or a goodwill payment. |
+| agent_error_rate | 0.02 fraction | illustrative [EST] | 0.005 to 0.06 | [EST] Residual errors after the review policy. Not a measured model score. |
+| cost_of_error | 25.0 USD/error | illustrative [EST] | 10.0 to 60.0 | [EST] Average cost of one bad refund decision, goodwill plus rework. |
+| input_tokens | 1800.0 tokens | illustrative [EST] | 800.0 to 4000.0 | [EST] Prompt size for one case file. Not a trace from a provider. |
+| output_tokens | 400.0 tokens | illustrative [EST] | 150.0 to 1200.0 | [EST] Draft length. Not a measured completion. |
+| input_price_per_million | 1.5 USD/1M tokens | illustrative [EST] | 0.5 to 5.0 | [EST] Illustrative blended price. Not copied from a vendor price page. |
+| output_price_per_million | 6.0 USD/1M tokens | illustrative [EST] | 2.0 to 15.0 | [EST] Illustrative blended price. Not copied from a vendor price page. |
+| review_minutes | 5.0 minutes | illustrative [EST] | 2.0 to 10.0 | [EST] Time a person spends when a case is routed to review. |
+| review_rate | 0.5 fraction | illustrative [EST] | 0.15 to 0.9 | [EST] Share of cases a person still opens. The rest are not auto-approved by this model. |
+| implementation_cost | 180000.0 USD | illustrative [EST] | 80000.0 to 300000.0 | [EST] One-time build, integration and change-management sketch. Not a quote. |
+| monthly_run_cost | 2500.0 USD/month | illustrative [EST] | 800.0 to 6000.0 | [EST] Fixed monthly platform and on-call cost. Charged in full during the ramp. |
+| adoption_ramp_months | 6.0 months | illustrative [EST] | 2.0 to 14.0 | [EST] Months until the desk uses the agent on every case. |
+| discount_rate_annual | 0.1 fraction | illustrative [EST] | 0.05 to 0.18 | [EST] Annual discount rate for a 3-year NPV. Not a treasury rate. |
+
+## Measured-cost slot
+
+Measured data, separate from the invented inputs. These are bills for one 23-case eval run, not the cost of one production refund. They are not applied to the NPV on this page.
+
+Source: agent-runtime-evals commit c1efdfd, measured 2026-10-17, provider xAI. Price page https://docs.x.ai/docs/models fetched 2026-10-17.
+
+| Sample | Billed USD | Tokens | Label |
+| --- | --- | --- | --- |
+| non-reasoning | US$0.036-0.037 | about 66-70k input / 3-3.4k output tokens | measured |
+| grok-4.3 | US$0.072 | 62.7k input / 14.5k output, including about 11.6k reasoning tokens | measured |
+
+[EST] `per_production_item_usd = billed_eval_run_usd / 23`
+One production refund costs the same as one case inside this 23-case eval run. The billed dollars, the token counts and the case count are measured. This equality is not. It is not applied to the invented case inputs in refund_desk.yaml or weekly_report.yaml.
+
+[EST] non-reasoning: US$0.036-0.037 / 23 = US$0.001565 to US$0.001609 per case (display rounded to 6 decimal places).
+[EST] grok-4.3: US$0.072 / 23 = US$0.003130 per case (display rounded to 6 decimal places).
+
+Short-context list price times the token counts does not equal the billed sample. The measured figure is the billed total. The non-reasoning sample is recorded as non-reasoning; the list-price row used for that reconstruction is grok-4.20-0309-non-reasoning on the price page fetched the same day. This file does not claim a model id for that sample beyond non-reasoning.
+
+List-price reconstruction for non-reasoning using grok-4.20-0309-non-reasoning at US$1.25 input and US$2.50 output per million tokens: US$0.09 to US$0.096. Billed sample: US$0.036-0.037. The reconstruction is not the measured bill.
+List-price reconstruction for grok-4.3 using grok-4.3 at US$1.25 input and US$2.50 output per million tokens: US$0.114625. Billed sample: US$0.072. The reconstruction is not the measured bill.
+
+Applied as the agent cost in this run: no.
+
+[EST] Token prices in this file stay invented. The measured 23-case eval bill is a separate record in assumptions/measured_eval_run_cost.yaml (agent-runtime-evals commit c1efdfd, 2026-10-17). Dividing that bill by 23 is an [EST] conversion and is not applied to these inputs.
+
+## Commentary
+
+Planning sketch only. The report stays on disk. Prompt refund-commentary did not approve an external action.

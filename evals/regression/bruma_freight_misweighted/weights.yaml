@@ -1,0 +1,16 @@
+# [EST] illustrative weights. Replace with your own.
+illustrative: true
+case_id: bruma_freight
+org: Bruma Freight
+title: Internal support agent for shipment-exception tickets
+as_of: "2026-10-17"
+fictional: true
+weights:
+  control: "0.05"
+  time_to_value: "0.55"
+  tco_3y: "0.10"
+  vendor_risk: "0.06"
+  security_compliance: "0.08"
+  maintainability: "0.06"
+  extensibility: "0.05"
+  exit_cost: "0.05"

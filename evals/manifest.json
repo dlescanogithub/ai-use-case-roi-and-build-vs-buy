@@ -1,0 +1,14 @@
+{
+  "cases": [
+    {
+      "id": "bruma_freight",
+      "case_dir": "examples/bruma_freight",
+      "cassette": "evals/cassettes/bruma_freight.json"
+    },
+    {
+      "id": "cedro_records",
+      "case_dir": "examples/cedro_records",
+      "cassette": "evals/cassettes/cedro_records.json"
+    }
+  ]
+}

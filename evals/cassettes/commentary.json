@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "responses": [
+    {
+      "id": "refund-commentary",
+      "output": "The simulated base case is a planning sketch. It does not approve a purchase or contact anyone.",
+      "cost": 0.0,
+      "tokens": 0
+    },
+    {
+      "id": "weekly-commentary",
+      "output": "The weekly-report sketch stays on disk. It does not start a subscription or send the report.",
+      "cost": 0.0,
+      "tokens": 0
+    }
+  ]
+}

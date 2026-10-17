@@ -1,0 +1,5 @@
+This repository includes small utilities that are also maintained, in parallel, in other portfolio repositories: a cassette provider, invariant checks, a JSON trace, structured logging, bounded retries, and the secret scanner in src/roi_and_build_vs_buy/secretscan.py.
+
+Those utilities are kept aligned on purpose. The ROI model and the build-vs-buy decision kit around them live in this repository. Nothing in this tree is copied from employer work or from a client engagement.
+
+See docs/PROVENANCE.md for the secret-scanner hash.

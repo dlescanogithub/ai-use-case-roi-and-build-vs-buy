@@ -1,0 +1,10 @@
+{
+  "bruma_freight": {
+    "winner": "build",
+    "min_winner_stability_pct": "67.86"
+  },
+  "cedro_records": {
+    "winner": "build",
+    "min_winner_stability_pct": "100.00"
+  }
+}

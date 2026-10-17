@@ -1,0 +1,133 @@
+# [EST] illustrative scores. Replace with your own.
+illustrative: true
+case_id: cedro_records
+options:
+  - id: build
+    label: Build in-house
+    cells:
+      control:
+        score: 5
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: Indexes and passage logs would stay on storage the cooperative already operates, under the team's own access rules.
+      time_to_value:
+        score: 2
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: Indexing the binders and reviewing citations takes longer than switching on a hosted search box.
+      tco_3y:
+        score: 4
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: The build is a small retrieval service. After year one the modeled cash is maintenance, review, and a modest run cost.
+      vendor_risk:
+        score: 5
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: No vendor can reprice the archive or change the data-use terms. Continuity depends on the internal maintainer.
+      security_compliance:
+        score: 5
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: Policy text does not leave the fictional tenancy. The team still has to log queries and honor retention.
+      maintainability:
+        score: 3
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: One maintainer can own the index job and the eval set. Absence of that person is the main operational risk.
+      extensibility:
+        score: 4
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: New collections can be added as folders in the same pipeline, without a vendor schema change.
+      exit_cost:
+        score: 5
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: The index and the eval questions remain with the cooperative. There is no modeled contract exit fee.
+  - id: vendor_a
+    label: Vendor A - Folio Cloud
+    cells:
+      control:
+        score: 3
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: Folio Cloud offers admin roles and an export of citations in these fictional case notes. Ranking and retention still follow the product.
+      time_to_value:
+        score: 4
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: A hosted workspace can be pointed at a sample binder within a short pilot, which matters less here than custody.
+      tco_3y:
+        score: 3
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: Seat licenses for the reading room dominate. Usage is small. Integration of the binder export is the year-one project.
+      vendor_risk:
+        score: 3
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: These fictional case notes model a 6 percent annual increase and a renewal. That is manageable and still a dependency.
+      security_compliance:
+        score: 4
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: These fictional case notes claim an audit log, a regional tenancy option, and no training on customer files. The score records the claim.
+      maintainability:
+        score: 4
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: The vendor operates the index. The cooperative still owns which binders are in scope and how citations are checked.
+      extensibility:
+        score: 3
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: New collections fit the product while they look like documents. A custom records system needs an integration.
+      exit_cost:
+        score: 3
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: Citations can be exported in these fictional case notes. Rebuilding the index later is a real project, with a modeled exit fee.
+  - id: vendor_b
+    label: Vendor B - Parchment Lane
+    cells:
+      control:
+        score: 2
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: Parchment Lane keeps ranking and retention settings inside a proprietary console, with few export switches.
+      time_to_value:
+        score: 5
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: It is the fastest fictional way to get a search box in front of the reading room.
+      tco_3y:
+        score: 3
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: Seats are cheaper than Folio Cloud. The modeled exit fee is high, and the price-increase assumption is steeper.
+      vendor_risk:
+        score: 2
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: A 15 percent increase assumption and a thin export path put the archive on a single vendor's terms.
+      security_compliance:
+        score: 2
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: These fictional case notes say uploaded binders may be used to improve the shared service. That fails the cooperative's custody bar.
+      maintainability:
+        score: 3
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: Day-to-day operation is light. A change in the product becomes a ticket to the vendor, not a local fix.
+      extensibility:
+        score: 2
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: Collections outside the vendor's document model wait on their roadmap.
+      exit_cost:
+        score: 1
+        estimate: true
+        marker: "[EST] illustrative"
+        rationale: The modeled exit fee is large and these fictional case notes give no usable bulk export of the index or the feedback labels.

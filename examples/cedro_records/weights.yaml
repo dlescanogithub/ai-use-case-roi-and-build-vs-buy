@@ -1,0 +1,16 @@
+# [EST] illustrative weights. Replace with your own.
+illustrative: true
+case_id: cedro_records
+org: Cedro Records
+title: Document assistant for internal policy binders
+as_of: "2026-10-17"
+fictional: true
+weights:
+  control: "0.16"
+  time_to_value: "0.08"
+  tco_3y: "0.12"
+  vendor_risk: "0.14"
+  security_compliance: "0.24"
+  maintainability: "0.10"
+  extensibility: "0.08"
+  exit_cost: "0.08"
