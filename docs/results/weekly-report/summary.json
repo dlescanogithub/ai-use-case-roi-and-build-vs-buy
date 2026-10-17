@@ -1,0 +1,101 @@
+{
+  "agent_cost_per_run": 0.027,
+  "break_even_reason": "steady-state monthly volume where net monthly savings are zero",
+  "break_even_volume": 0.42337301279292117,
+  "case_id": "weekly-report",
+  "command": "python -m roi_model.cli publish-docs",
+  "cost_per_completed_item": 13.360333333333331,
+  "currency": "USD",
+  "generated_at": "2026-10-17T15:16:12.798911+00:00",
+  "git_revision": "130b921",
+  "inputs": "EST",
+  "measured_override": false,
+  "monte_carlo": {
+    "draws": 2000,
+    "net_p10": 73.5409017112157,
+    "net_p50": 191.10713719710668,
+    "net_p90": 376.5157378476077,
+    "npv_p10": 1715.6869181057455,
+    "npv_p50": 5415.2323027316315,
+    "npv_p90": 11340.30018121535,
+    "seed": 42,
+    "top_drivers": [
+      {
+        "name": "loaded_cost_per_hour",
+        "spearman": 0.5531180147795037
+      },
+      {
+        "name": "manual_minutes_per_item",
+        "spearman": 0.5511181587795397
+      },
+      {
+        "name": "volume_per_month",
+        "spearman": 0.4943253575813394
+      },
+      {
+        "name": "review_minutes",
+        "spearman": -0.19053640463410115
+      },
+      {
+        "name": "monthly_run_cost",
+        "spearman": -0.15142234985558747
+      }
+    ]
+  },
+  "net_monthly_savings_steady": 168.9586666666667,
+  "npv_3y": 5113.998546995942,
+  "payback_months": 1.775582193672614,
+  "payback_reason": "cumulative cash flow reaches zero inside the search window",
+  "payback_status": "pays_back",
+  "quality_adjusted_savings_per_item": 47.23966666666667,
+  "residual_error_cost_per_item": 0.4,
+  "scenarios": {
+    "base": {
+      "net_monthly": 168.9586666666667,
+      "npv": 5113.998546995942,
+      "payback_months": 1.775582193672614,
+      "payback_status": "pays_back"
+    },
+    "optimistic": {
+      "net_monthly": 524.9586666666667,
+      "npv": 16521.42452137955,
+      "payback_months": 0.5714735636329463,
+      "payback_status": "pays_back"
+    },
+    "pessimistic": {
+      "net_monthly": -67.708,
+      "npv": -2469.5898816673175,
+      "payback_months": null,
+      "payback_status": "never"
+    }
+  },
+  "simulated": true,
+  "top_tornado": [
+    {
+      "abs_swing": 9719.810521244455,
+      "name": "loaded_cost_per_hour",
+      "swing": 9719.810521244455
+    },
+    {
+      "abs_swing": 9082.297762155451,
+      "name": "volume_per_month",
+      "swing": 9082.297762155451
+    },
+    {
+      "abs_swing": 8972.132788841043,
+      "name": "manual_minutes_per_item",
+      "swing": 8972.132788841043
+    },
+    {
+      "abs_swing": 4699.688603678638,
+      "name": "review_minutes",
+      "swing": -4699.688603678638
+    },
+    {
+      "abs_swing": 2563.4665110974393,
+      "name": "monthly_run_cost",
+      "swing": -2563.4665110974393
+    }
+  ],
+  "version": "0.1.0"
+}

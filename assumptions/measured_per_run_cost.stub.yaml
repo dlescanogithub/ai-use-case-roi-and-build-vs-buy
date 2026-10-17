@@ -1,0 +1,9 @@
+schema_version: 1
+status: stub
+agent_cost_per_run: null
+source: "not applied"
+note: >
+  Stub only. Stub numbers are not vendor prices and are not used by the demo.
+  To override tokens times price, write a different file with status measured,
+  a non-negative agent_cost_per_run, and a source that names the measurement
+  command and date. Do not paste a price-page figure and call it measured.

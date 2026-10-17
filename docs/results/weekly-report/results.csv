@@ -1,0 +1,15 @@
+metric,value,note
+currency,USD,[EST] inputs; simulated outputs
+agent_cost_per_run,0.027,"tokens x price, or measured override"
+cost_per_completed_item,13.360333333333331,includes reviewer time
+residual_error_cost,0.4,quality adjustment
+quality_adjusted_savings_per_item,47.23966666666667,manual cost minus agent cost minus residual errors
+monthly_volume_steady,4.0,full adoption
+net_monthly_savings_steady,168.9586666666667,after fixed run cost
+break_even_volume,0.42337301279292117,steady-state monthly volume where net monthly savings are zero
+payback_status,pays_back,cumulative cash flow reaches zero inside the search window
+payback_months,1.775582193672614,none when the case never pays back
+npv,5113.998546995942,discounted over the horizon; implementation at month 0
+npv_p10,1715.6869181057455,simulated
+npv_p50,5415.2323027316315,simulated
+npv_p90,11340.30018121535,simulated

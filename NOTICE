@@ -1,0 +1,3 @@
+This repository implements its own eval helpers (cassette replay, fake provider, JSONL trace, JSON logging, secret scan).
+
+It is not a byte-for-byte copy of agent-runtime-evals. See docs/PROVENANCE.md.
