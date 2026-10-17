@@ -1,6 +1,6 @@
 # Weekly report automation
 
-Generado el 2026-10-17T15:16:12.798911+00:00 con `python -m roi_model.cli publish-docs` (paquete 0.1.0, git 130b921).
+Generado el 2026-10-17T15:17:20.092837+00:00 con `python -m roi_model.cli publish-docs` (paquete 0.1.0, git 345f7dd).
 Simulado. Cada insumo es [EST]. Esto no es un resultado medido de un negocio real.
 
 Mirá: el número de abajo sale de supuestos, no de una factura.

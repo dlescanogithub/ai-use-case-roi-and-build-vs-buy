@@ -1,6 +1,6 @@
 # Refund desk agent
 
-Generated 2026-10-17T15:16:12.798911+00:00 by `python -m roi_model.cli publish-docs` (package 0.1.0, git 130b921).
+Generated 2026-10-17T15:17:20.092837+00:00 by `python -m roi_model.cli publish-docs` (package 0.1.0, git 345f7dd).
 Simulated. Every input is [EST]. This page is not a measured business result.
 
 Puerto Gris Parcel Co. is a fictional carrier. A back-office agent would draft refund decisions for returned parcels. A person still approves the ones the policy sends to review. None of these figures are measurements.

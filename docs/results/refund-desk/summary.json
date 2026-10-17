@@ -6,8 +6,8 @@
   "command": "python -m roi_model.cli publish-docs",
   "cost_per_completed_item": 1.3384333333333334,
   "currency": "USD",
-  "generated_at": "2026-10-17T15:16:12.798911+00:00",
-  "git_revision": "130b921",
+  "generated_at": "2026-10-17T15:17:20.092837+00:00",
+  "git_revision": "345f7dd",
   "inputs": "EST",
   "measured_override": false,
   "monte_carlo": {

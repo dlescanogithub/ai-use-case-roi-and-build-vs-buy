@@ -1,6 +1,6 @@
 # Weekly report automation
 
-Generated 2026-10-17T15:16:12.798911+00:00 by `python -m roi_model.cli publish-docs` (package 0.1.0, git 130b921).
+Generated 2026-10-17T15:17:20.092837+00:00 by `python -m roi_model.cli publish-docs` (package 0.1.0, git 345f7dd).
 Simulated. Every input is [EST]. This page is not a measured business result.
 
 Personal example only. Four reports a month, written by hand today. You still read every draft. The hourly rate is what you assume your time is worth. It is not a salary and not an employer figure.

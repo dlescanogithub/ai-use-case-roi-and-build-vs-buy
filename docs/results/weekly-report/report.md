@@ -1,9 +1,9 @@
 # ROI report: Weekly report automation
 
-- Generated: 2026-10-17T15:16:12.798911+00:00
+- Generated: 2026-10-17T15:17:20.092837+00:00
 - Command: `python -m roi_model.cli publish-docs`
 - Package version: 0.1.0
-- Git revision: 130b921
+- Git revision: 345f7dd
 - Data: 100% synthetic. Every input is [EST] unless a measured-cost file was applied.
 - Outputs: simulated.
 - Company: Personal desk (fictional).
