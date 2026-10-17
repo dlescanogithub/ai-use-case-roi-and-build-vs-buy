@@ -131,7 +131,7 @@ The pessimistic personal case is "your hour is cheap and you still spend an hour
 
 | Check | Result | Command | Date |
 | --- | --- | --- | --- |
-| Unit tests | 80 passed, coverage 91.02% | `python3 -m pytest` | 2026-10-17 |
+| Unit tests | 80 passed, coverage 90.98% | `python3 -m pytest` | 2026-10-17 |
 | Both eval gates | passed (exit 0), printed `BOTH EVAL GATES PASSED` | `ROI_ENABLE_REAL_PROVIDER=0 DECIDE_REAL_PROVIDER=0 python3 -m roi_and_build_vs_buy.evalkit` | 2026-10-17 |
 | Forced ROI regression | exit 1, savings identity and break-even failed | `ROI_ENABLE_REAL_PROVIDER=0 python3 -m roi_and_build_vs_buy.evalkit.roi_regression` | 2026-10-17 |
 | Forced decision regression | exit 1, `golden_winner: expected build got vendor_b`, stability 59.09 below 67.86 | `DECIDE_REAL_PROVIDER=0 python3 -m roi_and_build_vs_buy.evalkit.decide_regression` | 2026-10-17 |

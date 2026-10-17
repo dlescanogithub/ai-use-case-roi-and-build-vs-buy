@@ -6,7 +6,7 @@ Two layers. Do not mix them.
 
 | Metric | Measured value | Date | Command |
 | --- | --- | --- | --- |
-| Test coverage | 91.02% | 2026-10-17 | `python3 -m pytest` (Python 3.12.3, package 0.2.0) |
+| Test coverage | 90.98% | 2026-10-17 | `python3 -m pytest` (Python 3.12.3, package 0.2.0) |
 | Tests passed | 80 | 2026-10-17 | same |
 | Both eval gates | exit 0, printed `BOTH EVAL GATES PASSED` | 2026-10-17 | `ROI_ENABLE_REAL_PROVIDER=0 DECIDE_REAL_PROVIDER=0 python3 -m roi_and_build_vs_buy.evalkit` |
 | Bruma Freight winner stability | 67.86 (19 of 28) | 2026-10-17 | same command, JSON `cases[0].winner_stability_pct` |
