@@ -2,7 +2,7 @@ Illustrative numbers, replace with your own
 
 # Weekly report automation
 
-Generated 2026-10-17T15:42:32.584614+00:00 by `python -m roi_model.cli publish-docs` (package 0.1.0, git 30a9581).
+Generated 2026-10-17T15:43:07.257642+00:00 by `python -m roi_model.cli publish-docs` (package 0.1.0, git 3a4cb87).
 Simulated. Every input is illustrative [EST]. This page is not a measured business result.
 
 Personal example only. Four reports a month, written by hand today. You still read every draft. The hourly rate is what you assume your time is worth. It is not a salary and not an employer figure.

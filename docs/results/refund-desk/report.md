@@ -2,10 +2,10 @@ Illustrative numbers, replace with your own
 
 # ROI report: Refund desk agent
 
-- Generated: 2026-10-17T15:42:32.584614+00:00
+- Generated: 2026-10-17T15:43:07.257642+00:00
 - Command: `python -m roi_model.cli publish-docs`
 - Package version: 0.1.0
-- Git revision: 30a9581
+- Git revision: 3a4cb87
 - Data: 100% synthetic. Every input is illustrative [EST].
 - Outputs: simulated.
 - Company: Puerto Gris Parcel Co. (fictional).
