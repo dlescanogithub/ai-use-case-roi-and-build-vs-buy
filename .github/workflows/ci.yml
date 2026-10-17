@@ -32,7 +32,7 @@ jobs:
         run: make eval
       - name: Secret scan
         run: make secrets
-      - name: Forced regression must fail
+      - name: Forced regressions must fail
         run: |
           set +e
           make eval-regression
@@ -40,7 +40,7 @@ jobs:
           set -e
           echo "eval-regression exit code: $status"
           if [ "$status" -eq 0 ]; then
-            echo "expected the forced-regression gate to fail"
+            echo "expected both forced-regression gates to fail"
             exit 1
           fi
-          echo "forced regression failed as required"
+          echo "forced regressions failed as required"

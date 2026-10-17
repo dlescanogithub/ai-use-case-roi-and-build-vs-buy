@@ -3,11 +3,11 @@
   "break_even_reason": "steady-state monthly volume where net monthly savings are zero",
   "break_even_volume": 412.43462911128586,
   "case_id": "refund-desk",
-  "command": "python -m roi_model.cli publish-docs",
+  "command": "python -m roi_and_build_vs_buy roi publish-docs",
   "cost_per_completed_item": 1.3384333333333334,
   "currency": "USD",
-  "generated_at": "2026-10-17T15:43:07.257642+00:00",
-  "git_revision": "3a4cb87",
+  "generated_at": "2026-10-17T15:53:00.293199+00:00",
+  "git_revision": "6d55a15",
   "inputs": "EST",
   "measured_override": false,
   "monte_carlo": {
@@ -97,5 +97,5 @@
       "swing": 181013.1304107841
     }
   ],
-  "version": "0.1.0"
+  "version": "0.2.0"
 }

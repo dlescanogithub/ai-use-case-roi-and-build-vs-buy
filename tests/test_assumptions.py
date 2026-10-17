@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from roi_model.assumptions import (
+from roi_and_build_vs_buy.roi.assumptions import (
     AssumptionError,
     apply_measured_cost,
     apply_parameter,

@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from roi_model.measured_cost import (
+from roi_and_build_vs_buy.roi.measured_cost import (
     MeasuredCostError,
     list_price_usd,
     load_measured_eval_sample,

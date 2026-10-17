@@ -3,8 +3,8 @@ from __future__ import annotations
 import pytest
 from tests.factories import hand_assumptions
 
-from roi_model.assumptions import AssumptionError, scale_volume
-from roi_model.model import (
+from roi_and_build_vs_buy.roi.assumptions import AssumptionError, scale_volume
+from roi_and_build_vs_buy.roi.model import (
     adoption_at_month,
     build_result,
     monthly_discount_rate,

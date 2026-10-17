@@ -9,6 +9,6 @@ repos:
     hooks:
       - id: secretscan
         name: secretscan
-        entry: python -m roi_model.secretscan
+        entry: python -m roi_and_build_vs_buy.secretscan .
         language: system
         pass_filenames: false

@@ -7,9 +7,9 @@ from pathlib import Path
 
 import pytest
 
-from roi_model.assumptions import assumptions_from_case, load_case
-from roi_model.model import build_result
-from roi_model.report import money
+from roi_and_build_vs_buy.roi.assumptions import assumptions_from_case, load_case
+from roi_and_build_vs_buy.roi.model import build_result
+from roi_and_build_vs_buy.roi.report import money
 
 ROOT = Path(__file__).parents[1]
 

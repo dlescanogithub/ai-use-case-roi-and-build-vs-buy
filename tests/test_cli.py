@@ -6,11 +6,11 @@ from pathlib import Path
 
 import pytest
 
-from roi_model.cli import main
-from roi_model.config import Settings
-from roi_model.evalkit.providers import build_provider
-from roi_model.logging_setup import JsonFormatter
-from roi_model.publish import git_revision
+from roi_and_build_vs_buy.evalkit.commentary import build_provider
+from roi_and_build_vs_buy.logging_setup import JsonFormatter
+from roi_and_build_vs_buy.roi.cli import main
+from roi_and_build_vs_buy.roi.config import Settings
+from roi_and_build_vs_buy.roi.publish import git_revision
 
 ROOT = Path(__file__).parents[1]
 
@@ -66,7 +66,7 @@ def test_module_entrypoint_publishes(tmp_path: Path) -> None:
         }
     )
     completed = subprocess.run(
-        [sys.executable, "-m", "roi_model.cli", "publish-docs", "--docs", str(tmp_path / "docs")],
+        [sys.executable, "-m", "roi_and_build_vs_buy.roi.cli", "publish-docs", "--docs", str(tmp_path / "docs")],
         cwd=ROOT,
         env=env,
         check=False,
@@ -95,7 +95,7 @@ def test_git_revision_and_provider_guard(tmp_path: Path, monkeypatch: pytest.Mon
     def _no_git(*_args: object, **_kwargs: object) -> object:
         raise OSError("no git")
 
-    monkeypatch.setattr("roi_model.publish.subprocess.run", _no_git)
+    monkeypatch.setattr("roi_and_build_vs_buy.roi.publish.subprocess.run", _no_git)
     assert git_revision(tmp_path) == "unknown"
     settings = load_blank_settings("nope")
     with pytest.raises(ValueError):

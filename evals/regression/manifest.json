@@ -1,0 +1,8 @@
+{
+  "id": "bruma_freight_misweighted",
+  "weights": "evals/regression/bruma_freight_misweighted/weights.yaml",
+  "scores": "examples/bruma_freight/scores.yaml",
+  "tco": "examples/bruma_freight/tco.yaml",
+  "cassette": "evals/cassettes/bruma_freight.json",
+  "golden_case": "bruma_freight"
+}

@@ -2,64 +2,90 @@
 
 Illustrative numbers, replace with your own.
 
-Every number in `assumptions/refund_desk.yaml` and `assumptions/weekly_report.yaml` is invented. Each parameter has `illustrative: true` and an `[EST]` rationale. The CSV export and the XLSX Inputs sheet repeat that with an `illustrative` column. The one-pagers repeat it in a table. None of those values is a measurement of a real desk.
+This repository has two assumption shapes that share the `[EST]` tag in `src/roi_and_build_vs_buy/assumptions.py`. They are not one YAML schema. Edit the file that matches the question you are answering.
 
-The only measured money in this repository is the 23-case eval bill in `assumptions/measured_eval_run_cost.yaml`. That bill is not an input of either case. See the last section.
+- ROI cases: `assumptions/refund_desk.yaml` and `assumptions/weekly_report.yaml`. Each parameter has `illustrative: true`, a low/high range, and an `[EST]` rationale.
+- Decision cases: `examples/bruma_freight/` and `examples/cedro_records/`. Weights, scores, and TCO quantities. Every committed cell is an estimate.
 
-## Which file to edit
+The organisations are fictional. None of those numbers is a measurement of a running desk.
+
+The only measured money in this repository is the 23-case eval bill in `assumptions/measured_eval_run_cost.yaml`. That bill is not an input of either module. See the last section.
+
+Winner stability is calculated from the decision inputs. On the committed Bruma Freight scores it is 67.86% (19 of 28). Change a score or a weight and that percentage changes.
+
+## ROI inputs
 
 1. Copy the case you are adapting. Do not type a real client name into this portfolio repository.
 2. Keep `fictional: true` until the file lives in a private place that is allowed to name the client.
 3. Change one parameter at a time. This loader requires `illustrative: true` and an `[EST]` tag in the rationale, so leave both in place.
-4. When the client has measured a number, put that value in `value`, narrow `low` and `high` to the range they will defend, and rewrite the rationale with the source and the date. Keep `[EST]` on any part that is still a guess. A fully measured input belongs in a note that names the command and the date; the sample files in this repo are not that note.
+4. When a number has been measured, put that value in `value`, narrow `low` and `high` to the range they will defend, and rewrite the rationale with the source and the date. Keep `[EST]` on any part that is still a guess.
 5. Scenario overrides are illustrative too. Update `pessimistic`, `base` and `optimistic` so they stay inside `low` and `high`.
 
-Discovery questions for each input are in `docs/DISCOVERY.md`. The map below says where the answer comes from.
-
-| Input | What to ask the client | Where the answer usually sits |
+| Input | What to ask | Where the answer usually sits |
 | --- | --- | --- |
-| `volume_per_day` or `volume_per_month` | How many items arrived, per day or per month, over the last few months? | Ticket or order export, not a planning slide |
+| `volume_per_day` or `volume_per_month` | How many items arrived over the last few months? | Ticket or order export, not a planning slide |
 | `working_days_per_month` | Which days does this desk actually work? | The team's calendar |
-| `manual_minutes_per_item` | How many minutes of touch time does one item take today, excluding wait time you would not save? | A time study or a sample of timestamps |
-| `loaded_cost_per_hour` | What does one hour of that role cost fully loaded? | Finance, not the base wage alone |
-| `manual_error_rate` | What share of current items is wrong enough to rework or refund? | Quality sample or rework queue |
-| `agent_error_rate` | What residual error rate will you still accept after review? | A labeled pilot sample. If you have no sample, it stays `[EST]` |
-| `cost_of_error` | What does one of those errors cost in money, including goodwill and rework? | Finance plus the process owner |
-| `input_tokens`, `output_tokens` | What does one real run consume? | A provider usage export for one item, not a 23-case eval total |
+| `manual_minutes_per_item` | How many minutes of touch time does one item take, excluding wait you would not save? | A time study |
+| `loaded_cost_per_hour` | What does one hour of that role cost fully loaded? | Finance |
+| `manual_error_rate` | What share of current items is wrong enough to rework? | Quality sample |
+| `agent_error_rate` | What residual error rate will you still accept after review? | A labeled pilot sample. If you have none, it stays `[EST]` |
+| `cost_of_error` | What does one of those errors cost? | Finance plus the process owner |
+| `input_tokens`, `output_tokens` | What does one real run consume? | A usage export for one item, not a 23-case eval total |
 | `input_price_per_million`, `output_price_per_million` | Which price will you actually pay? | The contract or the invoice. A public price page is a list price, not a measurement of your run |
 | `review_minutes`, `review_rate` | What fraction of items does a person still open, and for how many minutes? | The review policy, then a week of observation |
-| `implementation_cost` | What is the one-time cost to put this in, including change management? | A quote or an internal estimate. An estimate stays `[EST]` |
-| `monthly_run_cost` | What fixed cost continues every month after launch? | Platform invoice plus on-call. It does not scale down during the ramp in this model |
+| `implementation_cost` | What is the one-time cost to put this in? | A quote or an internal estimate. An estimate stays `[EST]` |
+| `monthly_run_cost` | What fixed cost continues every month? | Platform invoice plus on-call |
 | `adoption_ramp_months` | How many months until the desk uses it on every item? | The rollout plan |
-| `discount_rate_annual` | What annual rate does finance use? | Finance. Horizon stays in `horizon_months` (36 in the samples) |
+| `discount_rate_annual` | What annual rate does finance use? | Finance |
+
+## Decision inputs
+
+### Weights (`weights.yaml`)
+
+Eight weights that must sum to 1: `control`, `time_to_value`, `tco_3y`, `vendor_risk`, `security_compliance`, `maintainability`, `extensibility`, `exit_cost`. Each weight is a judgment. The file marks them illustrative.
+
+### Scores (`scores.yaml`)
+
+Every cell, for every option: an integer from 1 to 5 (higher is better, including cost and risk), a rationale, and `estimate: true` until you have a source you will stand behind.
+
+### Cash drivers (`tco.yaml`)
+
+Every quantity is an envelope: `value`, `unit`, `source`, `date`, `estimate`. Replace build hours and rate, infrastructure, runs, tokens, eval and review hours, maintenance percent, volume growth, seats, license, usage tiers, integration hours, annual price increase, and exit cost.
+
+If a number comes from an official public price page, set `estimate: false`, put the `https://` URL in `source`, and the access date in `date`. The loader rejects a bare number and rejects a USD amount that claims to be real without that URL. The examples do not use any official public price. Leave `estimate: true` and the `[EST]` marker until you have one.
+
+Keep `fictional: true` on exercises in this repository. A real engagement follows [ADAPT_TO_A_REAL_CLIENT.md](ADAPT_TO_A_REAL_CLIENT.md).
+
+Discovery questions for both modules are in [DISCOVERY.md](DISCOVERY.md).
 
 ## How to rerun
 
-From the repository root, after the YAML change:
+From the repository root:
 
 ```bash
-ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template ROI_MC_DRAWS=2000 ROI_SEED=42 python -m roi_model.cli publish-docs
+python3 -m roi_and_build_vs_buy decide report --case examples/bruma_freight --out out/bruma-freight-report.md
+ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template ROI_MC_DRAWS=2000 ROI_SEED=42 \
+  python3 -m roi_and_build_vs_buy roi publish-docs
+ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template \
+  python3 -m roi_and_build_vs_buy roi run --case assumptions/refund_desk.yaml
 ```
 
-That rewrites `docs/ONE_PAGER_EN.md`, `docs/ONE_PAGER_ES.md`, the weekly one-pagers, and `docs/results/`. Read the diff before you commit it. A shorter check of one case is:
-
-```bash
-ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template python -m roi_model.cli run --case assumptions/refund_desk.yaml
-```
-
-Outputs of that command are simulated. They are the arithmetic of the file you just edited. They are not a measured saving.
+Outputs of the ROI commands are simulated. They are the arithmetic of the file you just edited.
 
 Then run the checks:
 
 ```bash
-python -m ruff check . && python -m ruff format --check .
-python -m mypy
-python -m pytest
-ROI_ENABLE_REAL_PROVIDER=0 python -m roi_model.evalkit
-ROI_ENABLE_REAL_PROVIDER=0 python -m roi_model.evalkit.regression
+python3 -m ruff check . && python3 -m ruff format --check .
+python3 -m mypy
+python3 -m pytest
+ROI_ENABLE_REAL_PROVIDER=0 DECIDE_REAL_PROVIDER=0 python3 -m roi_and_build_vs_buy.evalkit
+ROI_ENABLE_REAL_PROVIDER=0 python3 -m roi_and_build_vs_buy.evalkit.roi_regression
+DECIDE_REAL_PROVIDER=0 python3 -m roi_and_build_vs_buy.evalkit.decide_regression
 ```
 
-The regression command must exit non-zero. That is the forced failure.
+Both regression commands must exit non-zero. `decide_regression` loads a copy of the Bruma Freight scores and cash with the weights changed on purpose. That is the regression fixture, not your new case.
+
+`python3 -m roi_and_build_vs_buy.evalkit` checks that the calculator still returns the winner stored in `evals/golden/decisions.json`, and that winner stability stays at or above the floor stored next to it. It does not score an assistant. If your new scores change the winner, updating the golden file is a decision. Record it in the ADR.
 
 ## Do not paste the eval bill into the case
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from roi_model.assumptions import Assumptions
+from roi_and_build_vs_buy.roi.assumptions import Assumptions
 
 
 def hand_assumptions(**overrides: float | int | str | None) -> Assumptions:

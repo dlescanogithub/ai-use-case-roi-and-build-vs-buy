@@ -1,0 +1,12 @@
+{
+  "vendor_a": {
+    "usd_per_seat_year": "4200",
+    "source": "fictional cassette, not a live quote",
+    "simulated": true
+  },
+  "vendor_b": {
+    "usd_per_seat_year": "1500",
+    "source": "fictional cassette, not a live quote",
+    "simulated": true
+  }
+}

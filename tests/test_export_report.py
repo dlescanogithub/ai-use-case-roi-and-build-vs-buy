@@ -4,10 +4,10 @@ from pathlib import Path
 
 from openpyxl import load_workbook
 
-from roi_model.analysis import analyze
-from roi_model.assumptions import load_case
-from roi_model.export_tabular import write_csv, write_xlsx
-from roi_model.report import render_html, render_markdown, render_one_pager
+from roi_and_build_vs_buy.roi.analysis import analyze
+from roi_and_build_vs_buy.roi.assumptions import load_case
+from roi_and_build_vs_buy.roi.export_tabular import write_csv, write_xlsx
+from roi_and_build_vs_buy.roi.report import render_html, render_markdown, render_one_pager
 
 ROOT = Path(__file__).parents[1]
 
@@ -36,7 +36,7 @@ def test_csv_xlsx_and_report_labels(tmp_path: Path) -> None:
     markdown = render_markdown(
         analysis,
         generated_at="2026-10-17T00:00:00+00:00",
-        command="python -m roi_model.cli run",
+        command="python -m roi_and_build_vs_buy roi run",
         git_revision="abc",
     )
     assert "[EST]" in markdown

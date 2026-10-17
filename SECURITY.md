@@ -1,6 +1,6 @@
 # Security
 
-This repository is a local calculator. The default path does not call a network and does not take an external action.
+This repository is a local calculator with two modules. The default path does not call a network and does not take an external action.
 
 ## Reporting
 
@@ -8,10 +8,11 @@ If you find a secret, a dependency issue, or a way the tool writes outside the o
 
 ## Secrets
 
-- Configuration is environment variables. `.env.example` has empty placeholders.
+- Configuration is environment variables. `.env.example` has empty placeholders for `ROI_*` and `DECIDE_*`.
 - Do not commit `.env`.
-- CI runs `python -m roi_model.secretscan`.
-- The real-provider flag defaults to off. This repo does not ship a vendor HTTP client, so the flag cannot spend money.
+- CI runs `python -m roi_and_build_vs_buy.secretscan .`. The same command is the pre-commit hook.
+- `ROI_ENABLE_REAL_PROVIDER` defaults to off. This repo does not ship an ROI vendor HTTP client, so that flag cannot spend money.
+- `DECIDE_REAL_PROVIDER` defaults to off. The decision eval path ignores it and uses a cassette. Tests block sockets.
 
 ## Data
 
@@ -19,4 +20,4 @@ Cases are fictional. Do not paste client data, employer names, or production fig
 
 ## What this file does not promise
 
-There is no production deployment, no authentication layer, and no claim that the model is safe to use as an automatic approval for refunds or spend.
+There is no production deployment, no authentication layer, and no claim that either module is safe to use as an automatic approval for refunds, spend, or a vendor contract.

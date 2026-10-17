@@ -6,18 +6,18 @@ from pathlib import Path
 
 import pytest
 
-from roi_model.config import ConfigError, load_settings
-from roi_model.evalkit.gate import main as gate_main
-from roi_model.evalkit.gate import run_gate
-from roi_model.evalkit.invariants import check_trace, harmful
-from roi_model.evalkit.providers.cassette import CassetteError, CassetteProvider
-from roi_model.evalkit.providers.real import RealProvider, RealProviderDisabled
-from roi_model.evalkit.regression import main as regression_main
-from roi_model.logging_setup import JsonFormatter, configure_logging
-from roi_model.retry import RetryError, retry
-from roi_model.secretscan import main as scan_main
-from roi_model.secretscan import scan
-from roi_model.trace import append_event, read_events
+from roi_and_build_vs_buy.evalkit.commentary.cassette import CassetteError, CassetteProvider
+from roi_and_build_vs_buy.evalkit.commentary.real import RealProvider, RealProviderDisabled
+from roi_and_build_vs_buy.evalkit.roi_gate import main as gate_main
+from roi_and_build_vs_buy.evalkit.roi_gate import run_gate
+from roi_and_build_vs_buy.evalkit.roi_invariants import check_trace, harmful
+from roi_and_build_vs_buy.evalkit.roi_regression import main as regression_main
+from roi_and_build_vs_buy.evalkit.trace import append_event, read_events
+from roi_and_build_vs_buy.logging_setup import JsonFormatter, configure_logging
+from roi_and_build_vs_buy.retry import RetryError, retry
+from roi_and_build_vs_buy.roi.config import ConfigError, load_settings
+from roi_and_build_vs_buy.secretscan import main as scan_main
+from roi_and_build_vs_buy.secretscan import scan
 
 ROOT = Path(__file__).parents[1]
 
@@ -92,9 +92,9 @@ def test_secretscan_and_logging(tmp_path: Path, capsys: pytest.CaptureFixture[st
     dirty = tmp_path / "leak.txt"
     dirty.write_text("key " + "AKIA" + "IOSFODNN7EXAMPLE" + "\n", encoding="utf-8")
     found = scan(tmp_path)
-    assert found and found[0].rule == "aws_access_key"
-    assert scan_main(["--root", str(tmp_path)]) == 1
-    assert scan_main(["--root", str(ROOT)]) == 0
+    assert found and found[0].kind == "aws_access_key"
+    assert scan_main([str(tmp_path)]) == 1
+    assert scan_main([str(ROOT)]) == 0
     configure_logging("INFO")
     record = logging.LogRecord("roi", logging.INFO, __file__, 1, "hello", (), None)
     record.structured = {"case": "refund-desk"}  # type: ignore[attr-defined]

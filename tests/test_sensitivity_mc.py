@@ -4,10 +4,10 @@ from pathlib import Path
 
 import pytest
 
-from roi_model.assumptions import load_case
-from roi_model.montecarlo import percentile, run_monte_carlo, spearman
-from roi_model.sensitivity import scenarios, tornado
-from roi_model.svgchart import tornado_svg
+from roi_and_build_vs_buy.roi.assumptions import load_case
+from roi_and_build_vs_buy.roi.montecarlo import percentile, run_monte_carlo, spearman
+from roi_and_build_vs_buy.roi.sensitivity import scenarios, tornado
+from roi_and_build_vs_buy.roi.svgchart import tornado_svg
 
 ROOT = Path(__file__).parents[1]
 

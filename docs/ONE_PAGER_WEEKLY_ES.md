@@ -2,7 +2,7 @@ Illustrative numbers, replace with your own
 
 # Weekly report automation
 
-Generado el 2026-10-17T15:43:07.257642+00:00 con `python -m roi_model.cli publish-docs` (paquete 0.1.0, git 3a4cb87).
+Generado el 2026-10-17T15:53:00.293199+00:00 con `python -m roi_and_build_vs_buy roi publish-docs` (paquete 0.2.0, git 6d55a15).
 Simulado. Cada insumo es ilustrativo [EST]. Esto no es un resultado medido de un negocio real.
 
 Mirá: el número de abajo sale de supuestos, no de una factura.
