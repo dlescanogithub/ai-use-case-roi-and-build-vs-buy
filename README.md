@@ -316,7 +316,7 @@ Configuration is environment-only. See `.env.example`. This program does not aut
 
 ## Docs
 
-- [docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md) — walkthrough in rioplatense Spanish
+- [docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md) — plain-language walkthrough
 - [docs/BUSINESS_VALUE.md](docs/BUSINESS_VALUE.md) — value plan. No new volumes. Labels are MEASURED, [EST], SIMULATED, or UNVERIFIED
 - [docs/BUSINESS_CASE.md](docs/BUSINESS_CASE.md)
 - [docs/DISCOVERY.md](docs/DISCOVERY.md)
