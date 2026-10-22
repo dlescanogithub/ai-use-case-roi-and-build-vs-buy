@@ -1,92 +1,92 @@
-# Cómo funciona (en criollo)
+# How it works (plain language)
 
-Esto es un calculador con dos módulos. No es un agente que habla con clientes y no llama a ningún modelo pago. Sirve para sentarte en una entrevista y explicar, sin humo, el camino completo: primero decidís si construís o comprás, después mirás si el caso cierra en plata, y recién ahí hablás de un rollout por fases. El rollout de este repo se queda en sombra: escribe archivos, no toca un proceso real.
+This is a calculator with two modules. It is not an agent that talks to customers, and it does not call any paid model. It is for sitting in an interview and explaining, without hand-waving, the whole path: first you decide whether you build or buy, then you look at whether the case works out in money, and only then you talk about a phased rollout. The rollout in this repo stays in shadow: it writes files, and it does not touch a real process.
 
-El código está en inglés. El paquete se llama `roi_and_build_vs_buy`, versión 0.2.0. El comando es `python -m roi_and_build_vs_buy` con dos subcomandos: `decide` y `roi`.
+The code is in English. The package is called `roi_and_build_vs_buy`, version 0.2.0. The command is `python -m roi_and_build_vs_buy` with two subcommands: `decide` and `roi`.
 
-El plan de valor, en inglés y sin números nuevos, está en `docs/BUSINESS_VALUE.md`. El 2026-10-22, con Python 3.12.3 y pytest 9.1.1, `python3 -m pytest --cov=roi_and_build_vs_buy --cov-report=term-missing --cov-fail-under=80` imprimió 80 pruebas pasadas y `Total coverage: 90.98%` en un árbol limpio, sin carpeta `out/`. La tabla de esa corrida redondea el mismo total a 91% (2905 sentencias, 262 sin cubrir). Es la misma cuenta que el 2026-10-17. Si el archivo de traza ya existía, la misma orden imprimió 91.02% porque entra el `unlink` de esa traza. No es un ahorro de una empresa.
+The value plan, in English and with no new numbers, is in `docs/BUSINESS_VALUE.md`. On 2026-10-22, with Python 3.12.3 and pytest 9.1.1, `python3 -m pytest --cov=roi_and_build_vs_buy --cov-report=term-missing --cov-fail-under=80` printed 80 passed tests and `Total coverage: 90.98%` on a clean tree, with no `out/` folder. The table from that run rounds the same total to 91% (2905 statements, 262 not covered). It is the same count as on 2026-10-17. If the trace file was already there, the same command printed 91.02% because the `unlink` of that trace is included. It is not a company's savings.
 
-## Dos analogías, en orden
+## Two analogies, in order
 
-### 1. Alquilar o construir
+### 1. Rent or build
 
-Imaginate que necesitás un lugar para vivir.
+Imagine you need a place to live.
 
-- **Construir (build)** tarda más y ponés mucha plata al principio. Después la casa es tuya. El mantenimiento queda en vos.
-- **Alquilar (buy)** te mudás más rápido. Pagás todos los meses. El dueño puede subir el alquiler. Irte tiene mudanza y a veces una cláusula.
+- **Build (build)** takes longer, and you put a lot of money in at the start. After that the house is yours. Maintenance stays with you.
+- **Rent (buy)** and you move in faster. You pay every month. The owner can raise the rent. Leaving means a move, and sometimes a clause.
 
-Un agente interno es parecido. Construirlo es un equipo, un set de pruebas y un costo chico por cada corrida. Comprarlo es asientos, un precio de uso y una salida que duele si el formato es cerrado.
+An internal agent is similar. Building it is a team, a test set, and a small cost per run. Buying it is seats, a usage price, and an exit that hurts if the format is closed.
 
-Este módulo no elige la casa. Arma la planilla: puntajes, pesos, plata a 3 años, y la pregunta "¿cuánto tendría que moverse un peso para que gane el otro?".
+This module does not pick the house. It builds the sheet: scores, weights, money over 3 years, and the question "how far would one weight have to move for the other option to win?".
 
-### 2. La canilla que gotea
+### 2. The dripping tap
 
-Cuando ya te inclinaste por una opción, mirá si el ahorro mensual alcanza.
+Once you have leaned toward one option, look at whether the monthly savings are enough.
 
-- La implementación es la plata y las horas del primer día.
-- El ahorro mensual es el agua que dejás de tirar, menos lo que te cuesta el repuesto que se gasta.
-- El recupero (payback) es cuántos meses tardás en juntar de nuevo lo que gastaste al principio.
-- El volumen de equilibrio es cuántos baldes tenés que ahorrar por mes para que el arreglo no te deje pérdida, sin contar todavía el gasto del primer día.
-- La sensibilidad es mover una perilla. El gráfico tornado muestra cuál mueve más el resultado.
-- El Monte Carlo es tirar los dados muchas veces y mirar el percentil 10, el 50 y el 90. No es una promesa.
+- Implementation is the money and the hours on day one.
+- Monthly savings are the water you stop pouring away, minus what the replacement part that wears out costs you.
+- Payback is how many months it takes to gather again what you spent at the start.
+- Break-even volume is how many buckets you have to save per month so the repair does not leave you at a loss, still without counting the day-one spend.
+- Sensitivity is turning one knob. The tornado chart shows which one moves the result the most.
+- Monte Carlo is rolling the dice many times and looking at percentile 10, percentile 50, and percentile 90. It is not a promise.
 
-Fijate: si la revisión humana se come casi todo el tiempo que “ahorrabas”, la canilla sigue goteando. El modelo mete ese tiempo adentro, no en una nota al pie.
+Notice this: if human review eats almost all of the time you "were saving", the tap is still dripping. The model puts that time inside the calculation, not in a footnote.
 
-## Paso a paso
+## Step by step
 
-1. Abrís una carpeta de caso de `decide`. Adentro hay tres YAML: `weights.yaml`, `scores.yaml`, `tco.yaml`. Los dos ejemplos son **Bruma Freight** (mesa de excepciones de carga, empresa inventada) y **Cedro Records** (archivo cooperativo inventado).
-2. Los pesos son ocho criterios y tienen que sumar 1: control, tiempo hasta ver valor, TCO a 3 años, riesgo de proveedor, seguridad y cumplimiento, mantenibilidad, extensibilidad, costo de salida.
-3. Cada opción tiene un puntaje de 1 a 5 por criterio, con una frase que explica por qué. **Más alto es mejor**, también en costo y en riesgo. Un número ilustrativo va con `[EST]`.
-4. `decide score` multiplica peso por puntaje y ordena. Si hay empate, desempatan por el id.
-5. La sensibilidad mueve un peso por vez (−0.10, −0.05, +0.05, +0.10), tira los movimientos que dejarían un peso fuera de 0.01–0.90, reescala el resto, y vuelve a rankear. En Bruma, con estos puntajes ilustrativos, son 19 de 28, o sea 67.86%. Después busca, de a 0.001, el cambio más chico que da vuelta al ganador.
-6. `decide tco` proyecta la plata a 3 años. El costo de salida no entra en el total operativo: se suma en el último año, en la columna "con salida".
-7. El reporte junta las dos historias. Si el ganador de la matriz y el más barato en caja son distintos, lo dice. En los dos ejemplos pasa eso: gana `build` en puntaje y `vendor_b` es más barato en costo operativo.
-8. El ADR queda en `proposed`. Una persona lo acepta. El comando no compra nada.
-9. Si la opción sigue en pie, abrís un YAML de ROI. Cada número tiene una razón y tiene que decir `[EST]`. Los ejemplos son el escritorio de reembolsos de Puerto Gris Parcel Co. (inventada) y un reporte semanal personal.
-10. Por cada ítem el ROI calcula el costo manual, el costo del agente (tokens por un precio ilustrativo, o un costo medido si pasás un archivo distinto), y el ahorro ajustado por calidad.
-11. El ahorro neto del mes, en régimen, es volumen × ahorro por ítem − costo fijo mensual. El costo fijo se paga entero desde el mes 1. La adopción sube en línea durante la rampa.
-12. El payback puede decir **nunca**. El VPN a 3 años descuenta los flujos. El tornado mueve un supuesto a la vez. El Monte Carlo usa una semilla.
-13. Escribe Markdown, HTML, un SVG, un CSV y un XLSX con fórmulas. No manda mails ni aprueba nada.
-14. `python -m roi_and_build_vs_buy.evalkit` corre las dos compuertas. La de ROI rechequea la identidad del ahorro. La de `decide` chequea que los pesos suman 1, que el ganador coincide con `evals/golden/decisions.json`, que el TCO no baja cuando subís volumen u horas, que el cassette cuesta 0, y que el trace no registra una acción externa. No evalúa un asistente.
-15. Hay dos regresiones que **tienen que fallar**. `evalkit.roi_regression` mete una fórmula de ahorro mala a propósito. `evalkit.decide_regression` cambia los pesos de Bruma: el ganador pasa a `vendor_b` y la estabilidad queda en 59.09%, debajo del piso de 67.86%. El CI chequea que las dos fallen. El 67.86% no es una probabilidad ni una tasa de éxito en un escritorio real.
+1. You open a `decide` case folder. Inside there are three YAML files: `weights.yaml`, `scores.yaml`, `tco.yaml`. The two examples are **Bruma Freight** (a shipment-exception desk, an invented company) and **Cedro Records** (an invented archive cooperative).
+2. The weights are eight criteria and they have to sum to 1: control, time to value, 3-year TCO, vendor risk, security and compliance, maintainability, extensibility, exit cost.
+3. Each option has a score from 1 to 5 per criterion, with a sentence that explains why. **Higher is better**, including on cost and on risk. An illustrative number is tagged `[EST]`.
+4. `decide score` multiplies weight by score and sorts. If there is a tie, the id breaks it.
+5. Sensitivity moves one weight at a time (−0.10, −0.05, +0.05, +0.10), drops the shifts that would leave a weight outside 0.01–0.90, rescales the rest, and ranks again. On Bruma, with these illustrative scores, that is 19 of 28, or 67.86%. It then searches, in steps of 0.001, for the smallest change that flips the winner.
+6. `decide tco` projects the money over 3 years. Exit cost is not in the operating total: it is added in the last year, in the "With exit" column.
+7. The report puts the two stories together. If the matrix winner and the cheapest option in cash are different, it says so. That happens in both examples: `build` wins on score and `vendor_b` is cheaper in operating cost.
+8. The ADR stays `proposed`. A person accepts it. The command does not buy anything.
+9. If that option still holds, you open an ROI YAML. Every number has a reason and has to say `[EST]`. The examples are the refund desk at Puerto Gris Parcel Co. (invented) and a personal weekly report.
+10. For each item the ROI calculates the manual cost, the agent cost (tokens times an illustrative price, or a measured cost if you pass a different file), and the quality-adjusted savings.
+11. Steady-state net monthly savings are volume × savings per item − monthly fixed cost. The fixed cost is paid in full from month 1. Adoption rises in a straight line during the ramp.
+12. Payback can say **never**. The 3-year NPV discounts the cash flows. The tornado moves one assumption at a time. Monte Carlo uses a seed.
+13. It writes Markdown, HTML, an SVG, a CSV, and an XLSX with formulas. It does not send mail and it does not approve anything.
+14. `python -m roi_and_build_vs_buy.evalkit` runs both gates. The ROI gate rechecks the savings identity. The `decide` gate checks that the weights sum to 1, that the winner matches `evals/golden/decisions.json`, that TCO does not fall when you raise volume or hours, that the cassette costs 0, and that the trace does not record an external action. It does not evaluate an assistant.
+15. There are two regressions that **have to fail**. `evalkit.roi_regression` inserts a deliberately wrong savings formula. `evalkit.decide_regression` changes the Bruma weights: the winner becomes `vendor_b` and stability lands at 59.09%, under the floor of 67.86%. CI checks that both fail. 67.86% is not a probability and it is not a success rate on a real desk.
 
-El rollout por fases está en `docs/SCOPE.md`. La fase 0 es este calculador. Un conector o un tablero no están hechos.
+The phased rollout is in `docs/SCOPE.md`. Phase 0 is this calculator. A connector or a dashboard is not built.
 
-## Glosario
+## Glossary
 
-| Palabra | Qué quiere decir acá |
+| Word | What it means here |
 | --- | --- |
-| [EST] | Supuesto ilustrativo. No salió de un sistema real |
-| Simulado | Lo calculó este programa a partir de esos supuestos |
-| Matriz ponderada | Puntajes multiplicados por pesos que suman 1 |
-| TCO | Costo total en el horizonte, acá 3 años |
-| Estabilidad del ganador | Porcentaje de la grilla fija donde el primer puesto se mantiene |
-| Ahorro ajustado por calidad | El ahorro después de restar el costo de los errores que todavía quedan |
-| Volumen de equilibrio | Ítems por mes donde el ahorro neto del mes es cero. No incluye la implementación |
-| Payback | Meses hasta recuperar la implementación. Puede ser “nunca” |
-| VPN | Valor presente neto de los flujos del horizonte, menos la implementación |
-| Tornado | Qué supuesto, movido solo, cambia más el VPN |
-| Casete | Archivo grabado. Si no está el id, falla. No hay llamada en vivo |
-| Invariante | Una propiedad que tiene que ser verdad, no un guion de llamadas |
+| [EST] | Illustrative assumption. It did not come from a real system |
+| Simulated | This program calculated it from those assumptions |
+| Weighted matrix | Scores multiplied by weights that sum to 1 |
+| TCO | Total cost over the horizon, here 3 years |
+| Winner stability | Percentage of the fixed grid where first place holds |
+| Quality-adjusted savings | The savings after subtracting the cost of the errors that still remain |
+| Break-even volume | Items per month where net monthly savings are zero. Implementation is not included |
+| Payback | Months until implementation is recovered. It can be "never" |
+| NPV | Net present value of the horizon cash flows, minus implementation |
+| Tornado | Which assumption, moved alone, changes NPV the most |
+| Cassette | A recorded file. If the id is missing, it fails. There is no live call |
+| Invariant | A property that has to be true, not a script of calls |
 
-## Límites, dichos en serio
+## Limits, said plainly
 
-- Mirá los YAML antes de mirar el ranking. Si el puntaje está inflado, el ranking también.
-- Fijate que Bruma gana por poco: 3.70 contra 3.62. Con subir 0.031 el peso de tiempo-hasta-valor, gana Vendor A.
-- El VPN base del escritorio de reembolsos salió **USD 180,923.12** el 2026-10-17 con el comando de `docs/results/refund_desk.json`, y el escenario pesimista **no se paga nunca**.
-- No hay datos de un cliente. Puerto Gris, Bruma y Cedro están inventadas.
-- El precio por token del YAML de ROI es ilustrativo. No es una lista de un proveedor.
-- Un puntaje de seguridad registra lo que dicen las notas ficticias del caso. No es una certificación.
-- El Excel tiene fórmulas vivas, pero este repo no las ejecuta.
-- No predice la cola, ni el SLA, ni si la gente va a usar la herramienta.
-- No decide. Vos decidís.
+- Read the YAML before you read the ranking. If the score is inflated, the ranking is too.
+- Bruma wins by a little: 3.70 against 3.62. Raising the time-to-value weight by 0.031 makes Vendor A win.
+- The base NPV of the refund desk came out **USD 180,923.12** on 2026-10-17 with the command in `docs/results/refund_desk.json`, and the pessimistic scenario **never pays back**.
+- There is no client data. Puerto Gris, Bruma, and Cedro are invented.
+- The per-token price in the ROI YAML is illustrative. It is not a vendor price list.
+- A security score records what the fictional case notes say. It is not a certification.
+- The Excel file has live formulas, but this repo does not execute them.
+- It does not predict the queue, the SLA, or whether people will use the tool.
+- It does not decide. You decide.
 
-## Cómo mostrarlo en cinco minutos
+## How to show it in five minutes
 
-1. Corré `python -m roi_and_build_vs_buy decide report --case examples/bruma_freight --out out/bruma.md`.
-2. Mostrá el ranking y la frase de desacuerdo entre matriz y caja.
-3. Mostrá el flip de time-to-value (+0.031).
-4. Corré `python -m roi_and_build_vs_buy roi demo` y mostrá el payback del escritorio de reembolsos al lado del escenario que no se paga.
-5. Corré `python -m roi_and_build_vs_buy.evalkit.decide_regression` y mostrá que sale con error `golden_winner`. Ese rojo es la prueba de que la regresión puede fallar.
+1. Run `python -m roi_and_build_vs_buy decide report --case examples/bruma_freight --out out/bruma.md`.
+2. Show the ranking and the sentence where the matrix and the cash model disagree.
+3. Show the time-to-value flip (+0.031).
+4. Run `python -m roi_and_build_vs_buy roi demo` and show the refund-desk payback next to the scenario that never pays back.
+5. Run `python -m roi_and_build_vs_buy.evalkit.decide_regression` and show that it exits with error `golden_winner`. That red is the proof that the regression can fail.
 
-El README en inglés tiene la sección Proof con la corrida del 2026-10-22. Las dos compuertas volvieron a salir en 0 ese día, y las dos regresiones forzadas volvieron a salir en 1. El tiempo de 0.751 segundos del `publish-docs` sigue siendo el del 2026-10-17: no se volvió a cronometrar.
+The English README has the Proof section for the run on 2026-10-22. Both gates exited 0 again that day, and both forced regressions exited 1 again. The 0.751 second time for `publish-docs` is still the 2026-10-17 figure: it was not re-timed.

@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Documentation only. Package version stays 0.2.0.
+- Translated `docs/HOW_IT_WORKS.md` from Spanish into English. Numbers, `[EST]` labels, commands, and links are unchanged. `docs/ONE_PAGER_ES.md` and `docs/ONE_PAGER_WEEKLY_ES.md` stay the Spanish one-pagers. English counterparts are `docs/ONE_PAGER_EN.md` and `docs/ONE_PAGER_WEEKLY_EN.md`.
 - README in English: Start here, Quickstart, Business value, Proof, and What this does NOT prove.
 - Added `docs/BUSINESS_VALUE.md`. It restates the business case, the cost note, and the metrics. It does not add a volume or an ROI percentage.
 - Pytest remeasured on 2026-10-22, Python 3.12.3, pytest 9.1.1: 80 passed, total coverage 90.98% on a clean tree. A second run with a trace file already present printed 91.02%. Both eval gates exited 0. Both forced regressions exited 1. Secret scan findings were 0. mypy 2.4.0 reported no issues in 55 source files. Publish wall time was not re-timed.
