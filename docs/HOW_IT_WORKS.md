@@ -4,6 +4,8 @@ Esto es un calculador con dos módulos. No es un agente que habla con clientes y
 
 El código está en inglés. El paquete se llama `roi_and_build_vs_buy`, versión 0.2.0. El comando es `python -m roi_and_build_vs_buy` con dos subcomandos: `decide` y `roi`.
 
+El plan de valor, en inglés y sin números nuevos, está en `docs/BUSINESS_VALUE.md`. El 2026-10-22, con Python 3.12.3 y pytest 9.1.1, `python3 -m pytest --cov=roi_and_build_vs_buy --cov-report=term-missing --cov-fail-under=80` imprimió 80 pruebas pasadas y `Total coverage: 90.98%` en un árbol limpio, sin carpeta `out/`. La tabla de esa corrida redondea el mismo total a 91% (2905 sentencias, 262 sin cubrir). Es la misma cuenta que el 2026-10-17. Si el archivo de traza ya existía, la misma orden imprimió 91.02% porque entra el `unlink` de esa traza. No es un ahorro de una empresa.
+
 ## Dos analogías, en orden
 
 ### 1. Alquilar o construir
@@ -86,3 +88,5 @@ El rollout por fases está en `docs/SCOPE.md`. La fase 0 es este calculador. Un 
 3. Mostrá el flip de time-to-value (+0.031).
 4. Corré `python -m roi_and_build_vs_buy roi demo` y mostrá el payback del escritorio de reembolsos al lado del escenario que no se paga.
 5. Corré `python -m roi_and_build_vs_buy.evalkit.decide_regression` y mostrá que sale con error `golden_winner`. Ese rojo es la prueba de que la regresión puede fallar.
+
+El README en inglés tiene la sección Proof con la corrida del 2026-10-22. Las dos compuertas volvieron a salir en 0 ese día, y las dos regresiones forzadas volvieron a salir en 1. El tiempo de 0.751 segundos del `publish-docs` sigue siendo el del 2026-10-17: no se volvió a cronometrar.

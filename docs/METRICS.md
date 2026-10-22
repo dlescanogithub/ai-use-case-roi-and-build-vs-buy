@@ -18,8 +18,17 @@ Two layers. Do not mix them.
 | Publish wall time | 0.751 seconds | 2026-10-17 | `ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template ROI_MC_DRAWS=2000 ROI_SEED=42 python3 -m roi_and_build_vs_buy roi publish-docs` |
 | Decision-report latency | p50 0.152 s, p95 0.158 s | 2026-10-17 | 30 runs of `python3 -m roi_and_build_vs_buy decide report --case examples/bruma_freight --out /tmp/lat-N.md`, index `round(p/100*(n-1))` |
 | Default run cost | USD 0 | 2026-10-17 | publish command above, template provider, cost cap 0 |
+| Test coverage, remeasured | 90.98% on a clean tree (`Total coverage: 90.98%`; the table row rounds to 91%, 2905 statements, 262 missed). A second run the same day, with `out/traces/eval.jsonl` already present, printed 91.02% (261 missed) because `trace.unlink()` then ran | 2026-10-22 | `python3 -m pytest --cov=roi_and_build_vs_buy --cov-report=term-missing --cov-fail-under=80` (Python 3.12.3, pytest 9.1.1, pytest-cov 7.1.0, coverage 7.17.0, package 0.2.0, tree `6452c09`) |
+| Tests passed, remeasured | 80 | 2026-10-22 | same command. pytest also printed `CoverageWarning: Module roi_and_build_vs_buy was previously imported, but not measured` |
+| Both eval gates, remeasured | exit 0, printed `BOTH EVAL GATES PASSED` | 2026-10-22 | `ROI_ENABLE_REAL_PROVIDER=0 DECIDE_REAL_PROVIDER=0 python3 -m roi_and_build_vs_buy.evalkit` |
+| Bruma Freight winner stability, remeasured | 67.86 (19 of 28) | 2026-10-22 | same command |
+| Cedro Records winner stability, remeasured | 100.00 (28 of 28) | 2026-10-22 | same command |
+| Forced ROI regression, remeasured | exit 1, savings identity and break-even failed | 2026-10-22 | `ROI_ENABLE_REAL_PROVIDER=0 python3 -m roi_and_build_vs_buy.evalkit.roi_regression` |
+| Forced decision regression, remeasured | exit 1, `golden_winner: expected build got vendor_b`, winner stability 59.09 below the 67.86 floor | 2026-10-22 | `DECIDE_REAL_PROVIDER=0 python3 -m roi_and_build_vs_buy.evalkit.decide_regression` |
+| Secret scan, remeasured | `{"ok": true, "findings": 0}` | 2026-10-22 | `python3 -m roi_and_build_vs_buy.secretscan .` |
+| Types, remeasured | no issues in 55 source files (mypy 2.4.0) | 2026-10-22 | `python3 -m mypy` |
 
-Re-running the suite can change the coverage by a point if tests are added. Quote the command and the date with any new number.
+The 2026-10-17 rows stay. The 2026-10-22 rows are the same tree's calculator, run again. Publish wall time and decision-report latency were not re-timed on 2026-10-22. Re-running the suite can change the coverage by a point if tests are added. Quote the command and the date with any new number.
 
 Simulated outputs (inputs [EST], not metrics of a business): base refund NPV USD 180,923.12, payback 17.08 months, pessimistic payback never. See `docs/results/refund_desk.json`. Bruma operating totals are in `docs/examples/bruma-freight-report.md`.
 

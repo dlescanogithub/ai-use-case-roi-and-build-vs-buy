@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Documentation only. Package version stays 0.2.0.
+- README in English: Start here, Quickstart, Business value, Proof, and What this does NOT prove.
+- Added `docs/BUSINESS_VALUE.md`. It restates the business case, the cost note, and the metrics. It does not add a volume or an ROI percentage.
+- Pytest remeasured on 2026-10-22, Python 3.12.3, pytest 9.1.1: 80 passed, total coverage 90.98% on a clean tree. A second run with a trace file already present printed 91.02%. Both eval gates exited 0. Both forced regressions exited 1. Secret scan findings were 0. mypy 2.4.0 reported no issues in 55 source files. Publish wall time was not re-timed.
+
 ## 0.2.0 - 2026-10-17
 
 - One package, `roi_and_build_vs_buy`, distribution name `ai-use-case-roi-and-build-vs-buy`. Subcommands: `roi` and `decide`.
