@@ -12,7 +12,7 @@ ROI model: monthly NPV, payback, break-even, unit cost, quality adjustment, torn
 
 Exit criteria for this phase, checked in this repo on 2026-10-17, package 0.2.0, Python 3.12.3:
 
-- `python3 -m pytest` coverage at least 80% (measured 90.98%, 80 passed).
+- `python3 -m pytest` coverage at least 80% (measured 90.98%, 80 passed, on 2026-10-17 and again on 2026-10-22 with Python 3.12.3 and pytest 9.1.1).
 - `ROI_ENABLE_REAL_PROVIDER=0 DECIDE_REAL_PROVIDER=0 python3 -m roi_and_build_vs_buy.evalkit` exits 0.
 - `python3 -m roi_and_build_vs_buy.evalkit.roi_regression` exits non-zero.
 - `python3 -m roi_and_build_vs_buy.evalkit.decide_regression` exits non-zero.

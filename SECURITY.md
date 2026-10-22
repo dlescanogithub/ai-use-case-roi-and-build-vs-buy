@@ -18,6 +18,10 @@ If you find a secret, a dependency issue, or a way the tool writes outside the o
 
 Cases are fictional. Do not paste client data, employer names, or production figures into assumption files that you commit.
 
+## Labels
+
+Numbers in the README and in `docs/BUSINESS_VALUE.md` are tagged MEASURED, [EST], SIMULATED, or UNVERIFIED. A simulated NPV is not a saving this repository observed. Do not commit a key, a client name, an employer name, or a trace from a real desk.
+
 ## What this file does not promise
 
-There is no production deployment, no authentication layer, and no claim that either module is safe to use as an automatic approval for refunds, spend, or a vendor contract.
+There is no deployed service, no authentication layer, and no claim that either module is safe to use as an automatic approval for refunds, spend, or a vendor contract.
