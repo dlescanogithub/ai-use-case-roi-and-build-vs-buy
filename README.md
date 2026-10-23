@@ -316,6 +316,7 @@ Configuration is environment-only. See `.env.example`. This program does not aut
 
 ## Docs
 
+- **Demo video (English, offline):** [docs/demo/README.md](docs/demo/README.md) — [`ai_use_case_roi_and_build_vs_buy_demo_en.mp4`](docs/demo/ai_use_case_roi_and_build_vs_buy_demo_en.mp4)
 - [docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md) — plain-language walkthrough
 - [docs/BUSINESS_VALUE.md](docs/BUSINESS_VALUE.md) — value plan. No new volumes. Labels are MEASURED, [EST], SIMULATED, or UNVERIFIED
 - [docs/BUSINESS_CASE.md](docs/BUSINESS_CASE.md)

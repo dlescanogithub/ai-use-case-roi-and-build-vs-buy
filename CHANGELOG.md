@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Add narrated English demo video (`ai_use_case_roi_and_build_vs_buy_demo_en.mp4`) with subtitles and evidence pack under `docs/demo/`.
+
 ## 0.2.1 - 2026-10-22
 
 - Package version is 0.2.1.
