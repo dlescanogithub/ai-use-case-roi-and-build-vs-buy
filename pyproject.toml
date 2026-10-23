@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ai-use-case-roi-and-build-vs-buy"
-version = "0.2.0"
+version = "0.2.1"
 description = "Illustrative ROI model and build-vs-buy decision kit. Inputs are assumptions unless a measurement names a date and a command."
 readme = "README.md"
 requires-python = ">=3.11"

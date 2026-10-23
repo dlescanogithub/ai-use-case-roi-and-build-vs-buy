@@ -33,9 +33,9 @@ def test_committed_refund_and_weekly_match_the_model() -> None:
         assert money(result.npv, case.meta.currency) in text
         assert "[EST]" in text
         assert "illustrative" in text
-    spanish = (ROOT / "docs" / "ONE_PAGER_ES.md").read_text(encoding="utf-8")
-    assert "Mirá" in spanish
-    assert "Fijate" in spanish
+        assert "What the model says" in text
+    assert not (ROOT / "docs" / "ONE_PAGER_ES.md").exists()
+    assert not (ROOT / "docs" / "ONE_PAGER_WEEKLY_ES.md").exists()
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     refund = build_result(assumptions_from_case(load_case(ROOT / "assumptions" / "refund_desk.yaml")))
     assert readme.startswith("Illustrative numbers, replace with your own\n")

@@ -49,24 +49,15 @@ def test_csv_xlsx_and_report_labels(tmp_path: Path) -> None:
     assert "Puerto Gris" in html
     english = render_one_pager(
         analysis,
-        lang="en",
-        generated_at="2026-10-17T00:00:00+00:00",
-        command="cmd",
-        git_revision="abc",
-    )
-    spanish = render_one_pager(
-        analysis,
-        lang="es",
         generated_at="2026-10-17T00:00:00+00:00",
         command="cmd",
         git_revision="abc",
     )
     assert english.startswith("Illustrative numbers, replace with your own")
-    assert spanish.startswith("Illustrative numbers, replace with your own")
     assert "Simulated" in english
     assert "illustrative [EST]" in english
-    assert "Mirá" in spanish
-    assert "[EST]" in spanish
+    assert "What the model says" in english
+    assert "[EST]" in english
     weekly = analyze(load_case(ROOT / "assumptions" / "weekly_report.yaml"), draws=15, seed=3)
     write_xlsx(weekly, tmp_path / "weekly.xlsx")
     assert load_workbook(tmp_path / "weekly.xlsx")["Model"]["B2"].value.startswith("=")

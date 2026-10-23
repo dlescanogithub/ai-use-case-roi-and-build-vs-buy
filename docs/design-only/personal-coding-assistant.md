@@ -1,6 +1,6 @@
 # Choosing a coding assistant for a side project
 
-Status: **design only**. No scores are committed, because a personal tool choice depends on the person's repos and budget, and this portfolio does not invent a precise recommendation.
+Status: **design only**. No scores are committed, because a personal tool choice depends on the person's repos and budget, and this repository does not invent a precise recommendation.
 
 ## How the same kit would be used
 

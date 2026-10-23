@@ -15,7 +15,7 @@ Winner stability is calculated from the decision inputs. On the committed Bruma 
 
 ## ROI inputs
 
-1. Copy the case you are adapting. Do not type a real client name into this portfolio repository.
+1. Copy the case you are adapting. Do not type a real client name into this repository.
 2. Keep `fictional: true` until the file lives in a private place that is allowed to name the client.
 3. Change one parameter at a time. This loader requires `illustrative: true` and an `[EST]` tag in the rationale, so leave both in place.
 4. When a number has been measured, put that value in `value`, narrow `low` and `high` to the range they will defend, and rewrite the rationale with the source and the date. Keep `[EST]` on any part that is still a guess.

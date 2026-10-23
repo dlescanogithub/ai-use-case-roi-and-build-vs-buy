@@ -2,7 +2,7 @@
 
 This is a calculator with two modules. It is not an agent that talks to customers, and it does not call any paid model. This walkthrough is for engineers and buyers. It states the whole path plainly: first you decide whether you build or buy, then you look at whether the case works out in money, and only then you talk about a phased rollout. The rollout in this repo stays in shadow: it writes files, and it does not touch a real process.
 
-The code is in English. The package is called `roi_and_build_vs_buy`, version 0.2.0. The command is `python -m roi_and_build_vs_buy` with two subcommands: `decide` and `roi`.
+The repository is in English. The package is called `roi_and_build_vs_buy`, version 0.2.1. The command is `python -m roi_and_build_vs_buy` with two subcommands: `decide` and `roi`.
 
 The value plan, in English and with no new numbers, is in `docs/BUSINESS_VALUE.md`. On 2026-10-22, with Python 3.12.3 and pytest 9.1.1, `python3 -m pytest --cov=roi_and_build_vs_buy --cov-report=term-missing --cov-fail-under=80` printed 80 passed tests and `Total coverage: 90.98%` on a clean tree, with no `out/` folder. The table from that run rounds the same total to 91% (2905 statements, 262 not covered). It is the same count as on 2026-10-17. If the trace file was already there, the same command printed 91.02% because the `unlink` of that trace is included. It is not a company's savings.
 

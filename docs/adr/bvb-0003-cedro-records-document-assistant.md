@@ -2,7 +2,7 @@
 
 - Status: proposed (fictional worked example, illustrative [EST] inputs)
 - Date: 2026-10-17
-- Tool: roi_and_build_vs_buy 0.2.0
+- Tool: roi_and_build_vs_buy 0.2.1
 - Organisation: Cedro Records (fictional)
 - Case: `examples/cedro_records`
 

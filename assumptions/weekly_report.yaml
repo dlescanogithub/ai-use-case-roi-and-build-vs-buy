@@ -11,10 +11,6 @@ case:
     Personal example only. Four reports a month, written by hand today.
     You still read every draft. The hourly rate is what you assume your time
     is worth. It is not a salary and not an employer figure.
-  narrative_es: >
-    Ejemplo personal, nada más. Cuatro reportes por mes, hoy escritos a mano.
-    Igual leés cada borrador. El valor de la hora es lo que vos suponés que
-    vale tu tiempo. No es un sueldo y no es un dato de un empleador.
   measured_cost_slot: >
     [EST] Token prices in this file stay invented. The measured 23-case eval
     bill lives in assumptions/measured_eval_run_cost.yaml and is not a weekly

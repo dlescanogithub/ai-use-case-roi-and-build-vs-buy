@@ -1,6 +1,6 @@
 # Build vs buy report — Internal support agent for shipment-exception tickets
 
-Tool: roi_and_build_vs_buy 0.2.0
+Tool: roi_and_build_vs_buy 0.2.1
 As of: 2026-10-17
 Organisation: Bruma Freight (fictional)
 Illustrative inputs, replace with your own.

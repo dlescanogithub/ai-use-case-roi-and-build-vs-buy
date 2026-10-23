@@ -1,6 +1,6 @@
 # Risks
 
-Owners are roles. No real person is assigned. Probability and impact are labels for this portfolio piece, dated 2026-10-17, not a measured risk study. "Decision owner" means the person who can accept an ADR. "YAML owner" means the person who edits the case files.
+Owners are roles. No real person is assigned. Probability and impact are labels for this repository, dated 2026-10-17, not a measured risk study. "Decision owner" means the person who can accept an ADR. "YAML owner" means the person who edits the case files.
 
 | Risk | Probability | Impact | Mitigation | Owner |
 | --- | --- | --- | --- | --- |

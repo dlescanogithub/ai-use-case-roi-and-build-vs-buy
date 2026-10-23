@@ -46,8 +46,13 @@ def test_demo_run_and_publish(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -
     )
     docs = tmp_path / "docs"
     assert main(["publish-docs", "--docs", str(docs)]) == 0
-    spanish = (docs / "ONE_PAGER_ES.md").read_text(encoding="utf-8")
-    assert "Mirá" in spanish
+    english = (docs / "ONE_PAGER_EN.md").read_text(encoding="utf-8")
+    weekly = (docs / "ONE_PAGER_WEEKLY_EN.md").read_text(encoding="utf-8")
+    assert "Steady-state net monthly savings" in english
+    assert "Steady-state net monthly savings" in weekly
+    assert "[EST]" in english
+    assert not (docs / "ONE_PAGER_ES.md").exists()
+    assert not (docs / "ONE_PAGER_WEEKLY_ES.md").exists()
     assert (docs / "results" / "refund_desk.json").exists()
 
 
