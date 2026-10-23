@@ -1,6 +1,6 @@
 # How it works (plain language)
 
-This is a calculator with two modules. It is not an agent that talks to customers, and it does not call any paid model. It is for sitting in an interview and explaining, without hand-waving, the whole path: first you decide whether you build or buy, then you look at whether the case works out in money, and only then you talk about a phased rollout. The rollout in this repo stays in shadow: it writes files, and it does not touch a real process.
+This is a calculator with two modules. It is not an agent that talks to customers, and it does not call any paid model. This walkthrough is for engineers and buyers. It states the whole path plainly: first you decide whether you build or buy, then you look at whether the case works out in money, and only then you talk about a phased rollout. The rollout in this repo stays in shadow: it writes files, and it does not touch a real process.
 
 The code is in English. The package is called `roi_and_build_vs_buy`, version 0.2.0. The command is `python -m roi_and_build_vs_buy` with two subcommands: `decide` and `roi`.
 
@@ -81,12 +81,12 @@ The phased rollout is in `docs/SCOPE.md`. Phase 0 is this calculator. A connecto
 - It does not predict the queue, the SLA, or whether people will use the tool.
 - It does not decide. You decide.
 
-## How to show it in five minutes
+## A five-minute walkthrough
 
 1. Run `python -m roi_and_build_vs_buy decide report --case examples/bruma_freight --out out/bruma.md`.
-2. Show the ranking and the sentence where the matrix and the cash model disagree.
-3. Show the time-to-value flip (+0.031).
-4. Run `python -m roi_and_build_vs_buy roi demo` and show the refund-desk payback next to the scenario that never pays back.
-5. Run `python -m roi_and_build_vs_buy.evalkit.decide_regression` and show that it exits with error `golden_winner`. That red is the proof that the regression can fail.
+2. Read the ranking and the sentence where the matrix and the cash model disagree.
+3. Read the time-to-value flip (+0.031).
+4. Run `python -m roi_and_build_vs_buy roi demo` and read the refund-desk payback next to the scenario that never pays back.
+5. Run `python -m roi_and_build_vs_buy.evalkit.decide_regression` and check that it exits with error `golden_winner`. That red is the proof that the regression can fail.
 
 The English README has the Proof section for the run on 2026-10-22. Both gates exited 0 again that day, and both forced regressions exited 1 again. The 0.751 second time for `publish-docs` is still the 2026-10-17 figure: it was not re-timed.

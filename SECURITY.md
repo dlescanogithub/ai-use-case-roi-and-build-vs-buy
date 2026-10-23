@@ -4,7 +4,7 @@ This repository is a local calculator with two modules. The default path does no
 
 ## Reporting
 
-If you find a secret, a dependency issue, or a way the tool writes outside the output directory you asked for, open a private security advisory on this private repository. Do not open a public issue and do not include keys, traces from a real client, or personal data.
+If you find a secret, a dependency issue, or a way the tool writes outside the output directory you asked for, use GitHub private vulnerability reporting. On the Security tab, choose "Report a vulnerability". Do not open a public issue and do not include keys, traces from a real client, or personal data.
 
 ## Secrets
 

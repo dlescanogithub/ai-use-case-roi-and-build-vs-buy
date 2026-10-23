@@ -3,6 +3,10 @@
 ## Unreleased
 
 - Documentation only. Package version stays 0.2.0.
+- Security reports go through GitHub private vulnerability reporting: on the Security tab, choose "Report a vulnerability".
+- `docs/HOW_IT_WORKS.md` is a walkthrough for engineers and buyers. Interview-prep wording is removed. Numbers, commands, links, and the labels `[EST]`, `[SYN]`, MEASURED, SIMULATED, and UNVERIFIED are unchanged.
+- Spanish Markdown that remains on purpose is `docs/ONE_PAGER_ES.md` and `docs/ONE_PAGER_WEEKLY_ES.md`. Each has an English twin. Other Markdown docs are in English.
+- gitleaks 8.30.1 does not report the sha256 line in `docs/PROVENANCE.md` as `generic-api-key`, so no `.gitleaksignore` entry was added.
 - Translated `docs/HOW_IT_WORKS.md` from Spanish into English. Numbers, `[EST]` labels, commands, and links are unchanged. `docs/ONE_PAGER_ES.md` and `docs/ONE_PAGER_WEEKLY_ES.md` stay the Spanish one-pagers. English counterparts are `docs/ONE_PAGER_EN.md` and `docs/ONE_PAGER_WEEKLY_EN.md`.
 - README in English: Start here, Quickstart, Business value, Proof, and What this does NOT prove.
 - Added `docs/BUSINESS_VALUE.md`. It restates the business case, the cost note, and the metrics. It does not add a volume or an ROI percentage.
