@@ -25,7 +25,7 @@ def test_decide_score_through_the_dispatcher(tmp_path: Path) -> None:
     )
     assert code == 0
     text = out.read_text(encoding="utf-8")
-    assert "Tool: roi_and_build_vs_buy 0.2.0" in text
+    assert "Tool: roi_and_build_vs_buy 0.2.1" in text
     assert "python -m roi_and_build_vs_buy decide score" in text
 
 

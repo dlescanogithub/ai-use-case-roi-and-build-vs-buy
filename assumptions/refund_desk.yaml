@@ -11,11 +11,6 @@ case:
     Puerto Gris Parcel Co. is a fictional carrier. A back-office agent would
     draft refund decisions for returned parcels. A person still approves the
     ones the policy sends to review. None of these figures are measurements.
-  narrative_es: >
-    Puerto Gris Parcel Co. es una empresa de paquetes inventada. Un agente de
-    back-office redactaría la decisión de un reembolso. Una persona sigue
-    aprobando los casos que la política manda a revisión. Ninguna de estas
-    cifras es una medición.
   measured_cost_slot: >
     [EST] Token prices in this file stay invented. The measured 23-case eval
     bill is a separate record in assumptions/measured_eval_run_cost.yaml

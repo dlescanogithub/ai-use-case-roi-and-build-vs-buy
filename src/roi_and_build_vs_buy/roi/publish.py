@@ -184,12 +184,10 @@ def write_one_pagers(
     git_revision_value: str,
 ) -> None:
     directory.mkdir(parents=True, exist_ok=True)
-    for lang in ("en", "es"):
-        text = render_one_pager(
-            analysis,
-            lang=lang,
-            generated_at=generated_at,
-            command=command,
-            git_revision=git_revision_value,
-        )
-        (directory / f"{stem}_{lang.upper()}.md").write_text(text, encoding="utf-8")
+    text = render_one_pager(
+        analysis,
+        generated_at=generated_at,
+        command=command,
+        git_revision=git_revision_value,
+    )
+    (directory / f"{stem}_EN.md").write_text(text, encoding="utf-8")

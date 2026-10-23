@@ -50,7 +50,6 @@ def run_gate(root: Path, *, trace_dir: Path) -> list[str]:
     analysis = analyze(case, draws=20, seed=1)
     page = render_one_pager(
         analysis,
-        lang="en",
         generated_at="2000-01-01T00:00:00Z",
         command="eval-gate",
         git_revision="eval",

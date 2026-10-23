@@ -67,7 +67,6 @@ class CaseMeta:
     fictional: bool
     currency: str
     narrative: str
-    narrative_es: str
     horizon_months: int
     measured_cost_slot: str
 
@@ -254,8 +253,6 @@ def load_case(path: Path) -> CaseFile:
         raise AssumptionError("case.fictional must be true")
     currency = _text(meta_raw.get("currency"), "case.currency")
     narrative = _text(meta_raw.get("narrative"), "case.narrative")
-    narrative_es_raw = meta_raw.get("narrative_es")
-    narrative_es = narrative if narrative_es_raw is None else _text(narrative_es_raw, "case.narrative_es")
     slot = _text(meta_raw.get("measured_cost_slot"), "case.measured_cost_slot")
     horizon = doc.get("horizon_months")
     if isinstance(horizon, bool) or not isinstance(horizon, int):
@@ -289,7 +286,6 @@ def load_case(path: Path) -> CaseFile:
         fictional=True,
         currency=currency,
         narrative=narrative,
-        narrative_es=narrative_es,
         horizon_months=horizon,
         measured_cost_slot=slot,
     )

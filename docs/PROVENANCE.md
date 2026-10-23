@@ -1,8 +1,8 @@
 # Provenance
 
-## Shared portfolio utilities
+## Shared utilities
 
-One copy of each shared utility lives in this repository. The same files are maintained in parallel in other portfolio repositories and kept aligned. Nothing here is copied from employer or client work.
+One copy of each shared utility lives in this repository. The same files are maintained in parallel in the other repositories that share them, and those copies are kept aligned. Nothing here is copied from employer or client work.
 
 The shared pieces are:
 

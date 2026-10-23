@@ -1,4 +1,4 @@
-"""Markdown and HTML reports, plus EN/ES one-pagers.
+"""Markdown and HTML reports, plus English one-pagers.
 
 Numbers are formatted from a model run. Inputs stay tagged [EST].
 Outputs of the run are simulated. Nothing here is a vendor price.
@@ -34,14 +34,6 @@ def _payback_phrase(payback: Payback) -> str:
     if payback.status == "immediate":
         return "immediate (0 months)"
     return f"{payback.months:.2f} months"
-
-
-def _payback_phrase_es(payback: Payback) -> str:
-    if payback.status == "never":
-        return "nunca (en régimen el ahorro mensual no recupera la inversión)"
-    if payback.status == "immediate":
-        return "inmediato (0 meses)"
-    return f"{payback.months:.2f} meses"
 
 
 def render_markdown(
@@ -158,7 +150,7 @@ def render_markdown(
             "",
             "## Measured-cost slot",
             "",
-            render_measured_markdown(lang="en"),
+            render_measured_markdown(),
             "",
             (
                 "Applied as the agent cost in this run: yes."
@@ -193,19 +185,10 @@ def render_html(analysis: Analysis, markdown_preface: str, svg: str) -> str:
 def render_one_pager(
     analysis: Analysis,
     *,
-    lang: str,
     generated_at: str,
     command: str,
     git_revision: str,
 ) -> str:
-    if lang not in {"en", "es"}:
-        raise ValueError("lang must be en or es")
-    if lang == "en":
-        return _one_pager_en(analysis, generated_at, command, git_revision)
-    return _one_pager_es(analysis, generated_at, command, git_revision)
-
-
-def _one_pager_en(analysis: Analysis, generated_at: str, command: str, git_revision: str) -> str:
     result = analysis.result
     currency = analysis.case.meta.currency
     top = ", ".join(row.name for row in analysis.tornado[:3])
@@ -245,61 +228,9 @@ def _one_pager_en(analysis: Analysis, generated_at: str, command: str, git_revis
             "",
             "## Link to measured data",
             "",
-            render_measured_markdown(lang="en"),
+            render_measured_markdown(),
             "",
             "Applied as the agent cost in this run: " + ("yes." if analysis.measured_override else "no."),
-            "",
-        ]
-    )
-
-
-def _one_pager_es(analysis: Analysis, generated_at: str, command: str, git_revision: str) -> str:
-    result = analysis.result
-    currency = analysis.case.meta.currency
-    top = ", ".join(row.name for row in analysis.tornado[:3])
-    payback = _payback_phrase_es(result.payback)
-    return "\n".join(
-        [
-            ILLUSTRATIVE_BANNER,
-            "",
-            f"# {analysis.case.meta.title}",
-            "",
-            (f"Generado el {generated_at} con `{command}` (paquete {__version__}, git {git_revision})."),
-            "Simulado. Cada insumo es ilustrativo [EST]. Esto no es un resultado medido de un negocio real.",
-            "",
-            "Mirá: el número de abajo sale de supuestos, no de una factura.",
-            "Fijate que el tiempo de revisión y el error que queda están adentro del cálculo.",
-            "",
-            analysis.case.meta.narrative_es,
-            "",
-            *_input_table(analysis),
-            "",
-            "## Qué dice el modelo",
-            "",
-            f"- Ahorro mensual neto en régimen: {money(result.net_monthly_steady, currency)}.",
-            f"- Recupero de la inversión: {payback}.",
-            f"- {_break_even_sentence_es(result, currency)}",
-            f"- VPN a 3 años: {money(result.npv, currency)}.",
-            (
-                "- Costo por ítem terminado, con el tiempo de quien revisa: "
-                f"{money(result.unit.cost_per_completed_item, currency)}."
-            ),
-            (
-                "- Ahorro por ítem ajustado por calidad (después del error residual): "
-                f"{money(result.unit.quality_adjusted_savings, currency)}."
-            ),
-            f"- Los supuestos que más mueven la VPN: {top}.",
-            "",
-            "## Lo que una persona tiene que hacer",
-            "",
-            "El modelo no aprueba una compra, un proveedor ni un despliegue.",
-            "Tenés que cambiar los [EST] por mediciones antes de tratar la VPN como un plan.",
-            "",
-            "## Lugar para un dato medido",
-            "",
-            render_measured_markdown(lang="es"),
-            "",
-            "Aplicado como costo del agente en esta corrida: " + ("sí." if analysis.measured_override else "no."),
             "",
         ]
     )
@@ -331,14 +262,3 @@ def _break_even_sentence(result: ModelResult, currency: str) -> str:
     if result.break_even_volume is None:
         return f"Break-even volume: none. {result.break_even_reason}."
     return f"Break-even volume: {result.break_even_volume:,.2f} items/month. {result.break_even_reason}."
-
-
-def _break_even_sentence_es(result: ModelResult, currency: str) -> str:
-    del currency
-    if result.break_even_volume is None:
-        return "Volumen de equilibrio: no hay. El ahorro por ítem no cubre el costo fijo."
-    volume = f"{result.break_even_volume:,.2f}"
-    return (
-        f"Volumen de equilibrio: {volume} ítems por mes "
-        "(ahorro mensual neto en cero; la implementación no entra en este volumen)."
-    )

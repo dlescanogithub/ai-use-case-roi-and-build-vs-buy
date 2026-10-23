@@ -1,16 +1,17 @@
 # Changelog
 
-## Unreleased
+## 0.2.1 - 2026-10-22
 
-- Documentation only. Package version stays 0.2.0.
+- Package version is 0.2.1.
+- The repository is English only. Deleted `docs/ONE_PAGER_ES.md` and `docs/ONE_PAGER_WEEKLY_ES.md`. The one-pager generator, the measured-cost note, and `narrative_es` are removed. English pages remain `docs/ONE_PAGER_EN.md` and `docs/ONE_PAGER_WEEKLY_EN.md`. Numbers, commands, links, and the labels MEASURED, `[EST]`, `[SYN]`, SIMULATED, and UNVERIFIED on those pages are unchanged.
 - Security reports go through GitHub private vulnerability reporting: on the Security tab, choose "Report a vulnerability".
 - `docs/HOW_IT_WORKS.md` is a walkthrough for engineers and buyers. Interview-prep wording is removed. Numbers, commands, links, and the labels `[EST]`, `[SYN]`, MEASURED, SIMULATED, and UNVERIFIED are unchanged.
-- Spanish Markdown that remains on purpose is `docs/ONE_PAGER_ES.md` and `docs/ONE_PAGER_WEEKLY_ES.md`. Each has an English twin. Other Markdown docs are in English.
 - gitleaks 8.30.1 does not report the sha256 line in `docs/PROVENANCE.md` as `generic-api-key`, so no `.gitleaksignore` entry was added.
-- Translated `docs/HOW_IT_WORKS.md` from Spanish into English. Numbers, `[EST]` labels, commands, and links are unchanged. `docs/ONE_PAGER_ES.md` and `docs/ONE_PAGER_WEEKLY_ES.md` stay the Spanish one-pagers. English counterparts are `docs/ONE_PAGER_EN.md` and `docs/ONE_PAGER_WEEKLY_EN.md`.
+- Translated `docs/HOW_IT_WORKS.md` from Spanish into English. Numbers, `[EST]` labels, commands, and links are unchanged.
 - README in English: Start here, Quickstart, Business value, Proof, and What this does NOT prove.
 - Added `docs/BUSINESS_VALUE.md`. It restates the business case, the cost note, and the metrics. It does not add a volume or an ROI percentage.
-- Pytest remeasured on 2026-10-22, Python 3.12.3, pytest 9.1.1: 80 passed, total coverage 90.98% on a clean tree. A second run with a trace file already present printed 91.02%. Both eval gates exited 0. Both forced regressions exited 1. Secret scan findings were 0. mypy 2.4.0 reported no issues in 55 source files. Publish wall time was not re-timed.
+- Pytest remeasured on 2026-10-22 before this code change, Python 3.12.3, pytest 9.1.1: 80 passed, total coverage 90.98% on a clean tree. A second run with a trace file already present printed 91.02%. Both eval gates exited 0. Both forced regressions exited 1. Secret scan findings were 0. mypy 2.4.0 reported no issues in 55 source files. Publish wall time was not re-timed.
+- Checks after the English-only code change, Python 3.12.3, pytest 9.1.1, mypy 2.4.0, ruff 0.17.2: `ruff check` passed, `ruff format --check` passed, mypy reported no issues in 55 source files, pytest 80 passed, total coverage 91.02% (2873 statements, 258 missed). Both eval gates exited 0 and printed `BOTH EVAL GATES PASSED`. The forced ROI regression exited 1. The forced decision regression exited 1. Secret scan findings were 0. Publish wall time was not re-timed.
 
 ## 0.2.0 - 2026-10-17
 

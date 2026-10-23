@@ -50,11 +50,8 @@ def test_recorded_sample_is_labeled_and_not_the_list_price() -> None:
     assert "not applied" in note
     assert "US$0.036-0.037" in note
     assert "US$0.072" in note
-    spanish = render_measured_markdown(lang="es")
-    assert "23" in spanish
-    assert "[EST]" in spanish
-    with pytest.raises(ValueError):
-        render_measured_markdown(lang="fr")
+    assert "23" in note
+    assert "not the cost of one production refund" in note
     with pytest.raises(MeasuredCostError):
         per_case_est(Decimal("1"), 0)
 

@@ -132,23 +132,14 @@ def load_measured_eval_sample(path: Path | None = None) -> MeasuredEvalSample:
     return sample
 
 
-def render_measured_markdown(*, lang: str = "en") -> str:
+def render_measured_markdown() -> str:
     """Side note for reports. Does not change the case NPV."""
-    if lang not in {"en", "es"}:
-        raise ValueError("lang must be en or es")
     sample = load_measured_eval_sample()
-    if lang == "es":
-        intro = (
-            "Dato medido, aparte de los insumos inventados. Es la factura de una "
-            "corrida de evaluación de 23 casos, no el costo de un reembolso de "
-            "producción. No está aplicado a la VPN de esta página."
-        )
-    else:
-        intro = (
-            "Measured data, separate from the invented inputs. These are bills for "
-            "one 23-case eval run, not the cost of one production refund. "
-            "They are not applied to the NPV on this page."
-        )
+    intro = (
+        "Measured data, separate from the invented inputs. These are bills for "
+        "one 23-case eval run, not the cost of one production refund. "
+        "They are not applied to the NPV on this page."
+    )
     lines = [
         intro,
         "",

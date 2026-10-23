@@ -1,6 +1,6 @@
 # Scope
 
-No fees, no day rates, no proposal prices. This is a portfolio calculator with two modules.
+No fees, no day rates, no proposal prices. This is a calculator with two modules for engineers and buyers.
 
 ## Phase 0 — implemented
 
@@ -8,7 +8,7 @@ The decision kit and the monthly ROI model, sharing the `[EST]` tag.
 
 Decision kit: weighted matrix, winner stability, 3-year TCO, scenarios, break-even year, CLI reports, two worked examples (Bruma Freight, Cedro Records), an invariant gate, and a forced regression that exits non-zero.
 
-ROI model: monthly NPV, payback, break-even, unit cost, quality adjustment, tornado, three named scenarios, seeded Monte Carlo, CSV, an XLSX with live formulas, Markdown and HTML, an inline SVG, EN/ES one-pagers, an invariant gate, and a forced regression that exits non-zero.
+ROI model: monthly NPV, payback, break-even, unit cost, quality adjustment, tornado, three named scenarios, seeded Monte Carlo, CSV, an XLSX with live formulas, Markdown and HTML, an inline SVG, English one-pagers, an invariant gate, and a forced regression that exits non-zero.
 
 Exit criteria for this phase, checked in this repo on 2026-10-17, package 0.2.0, Python 3.12.3:
 

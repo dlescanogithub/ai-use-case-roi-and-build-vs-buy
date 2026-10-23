@@ -8,7 +8,7 @@ This repo proves a local calculator: a weighted build-versus-buy score, a 3-year
 One command, cost 0 USD: `ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template python3 -m roi_and_build_vs_buy roi demo`
 Walkthrough: [docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md). Value plan: [docs/BUSINESS_VALUE.md](docs/BUSINESS_VALUE.md).
 
-The distribution name is `ai-use-case-roi-and-build-vs-buy`. The import package is `roi_and_build_vs_buy`, version 0.2.0. The command is `python -m roi_and_build_vs_buy` with subcommands `decide` and `roi`.
+The distribution name is `ai-use-case-roi-and-build-vs-buy`. The import package is `roi_and_build_vs_buy`, version 0.2.1. The command is `python -m roi_and_build_vs_buy` with subcommands `decide` and `roi`.
 
 Puerto Gris Parcel Co., Bruma Freight, and Cedro Records are fictional. They are not clients and they are not employers.
 
@@ -260,7 +260,7 @@ The 59.09% line is the same calculator on illustrative weights edited on purpose
 | Bruma Freight and Cedro Records, generated reports and ADRs | Implemented |
 | Monthly NPV, payback, break-even, unit cost, quality adjustment | Implemented |
 | Tornado, pessimistic/base/optimistic, seeded PERT/triangular Monte Carlo | Implemented |
-| CSV, formula XLSX, Markdown, HTML, inline SVG, EN/ES one-pagers | Implemented |
+| CSV, formula XLSX, Markdown, HTML, inline SVG, English one-pagers | Implemented |
 | Two invariant gates and two forced regressions | Implemented |
 | Shared `[EST]` tag, one secretscan, one logger, one retry module, one trace | Implemented |
 | Measured 23-case eval bill | Recorded in `assumptions/measured_eval_run_cost.yaml` and not applied to the invented inputs |
@@ -329,7 +329,7 @@ Configuration is environment-only. See `.env.example`. This program does not aut
 - [docs/ADAPT_TO_A_REAL_CLIENT.md](docs/ADAPT_TO_A_REAL_CLIENT.md)
 - [docs/REPLACE_THE_ASSUMPTIONS.md](docs/REPLACE_THE_ASSUMPTIONS.md)
 - [docs/PROVENANCE.md](docs/PROVENANCE.md)
-- [docs/ONE_PAGER_EN.md](docs/ONE_PAGER_EN.md), [docs/ONE_PAGER_ES.md](docs/ONE_PAGER_ES.md)
+- [docs/ONE_PAGER_EN.md](docs/ONE_PAGER_EN.md), [docs/ONE_PAGER_WEEKLY_EN.md](docs/ONE_PAGER_WEEKLY_EN.md)
 - [docs/examples/bruma-freight-report.md](docs/examples/bruma-freight-report.md), [docs/examples/cedro-records-report.md](docs/examples/cedro-records-report.md)
 - [SECURITY.md](SECURITY.md), [CHANGELOG.md](CHANGELOG.md)
 

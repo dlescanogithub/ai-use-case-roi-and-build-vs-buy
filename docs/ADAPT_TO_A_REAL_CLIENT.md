@@ -2,7 +2,7 @@
 
 Keep the math. Replace the fiction before anyone treats an ADR or an NPV as a decision about a real organisation. Do not copy the fictional numbers.
 
-1. New private files. New case id. Do not copy Bruma Freight, Cedro Records, or Puerto Gris Parcel Co. forward as if they were the client. This portfolio repo should not gain a real client name or a real employer name.
+1. New private files. New case id. Do not copy Bruma Freight, Cedro Records, or Puerto Gris Parcel Co. forward as if they were the client. This repository should not gain a real client name or a real employer name.
 2. Sit both discovery lists in [DISCOVERY.md](DISCOVERY.md) with the process owner and with finance. Write their answers into the YAML. Leave `[EST]` on anything they did not measure.
 3. Follow [REPLACE_THE_ASSUMPTIONS.md](REPLACE_THE_ASSUMPTIONS.md) for which input to replace. A 23-case eval bill is already on disk and is not a per-item cost. Pass `--measured-cost` only for a file whose `agent_cost_per_run` was measured for one production item. Record the command and the date. Do not type a price from a vendor page into that field.
 4. For a public price page used in the TCO file, set `estimate: false`, the official `https://` URL, and the access date. The loader rejects anything else that claims to be real.
