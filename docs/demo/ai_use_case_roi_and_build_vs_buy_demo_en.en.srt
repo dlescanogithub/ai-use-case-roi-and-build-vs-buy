@@ -1,0 +1,38 @@
+1
+00:00:00,940 --> 00:00:09,040
+Build versus buy, and a three-year N-P-V, on illustrative inputs. Offline.
+Template provider. No key.
+
+2
+00:00:10,350 --> 00:00:17,510
+Refund desk case: simulated three-year N-P-V about one hundred eighty thousand
+nine hundred twenty-three dollars.
+
+3
+00:00:17,570 --> 00:00:25,540
+Weekly report case: about five thousand one hundred fourteen. Both are
+SIMULATED on [EST] inputs, not a vendor quote.
+
+4
+00:00:26,850 --> 00:00:34,330
+Bruma Freight decision report writes in under a second on this machine.
+Stability figures come from the calculator, not from an assistant score.
+
+5
+00:00:35,600 --> 00:00:41,640
+Eval kit: both gates passed. Forced ROI and decision regressions exit one on
+purpose.
+
+6
+00:00:42,870 --> 00:00:46,550
+Use it to pressure-test assumptions before a build-or-buy meeting.
+
+7
+00:00:46,590 --> 00:00:52,270
+Not covered: a real vendor price, a live model, or a guarantee the N-P-V will
+land.
+
+8
+00:00:52,360 --> 00:00:58,040
+Run the ROI demo with ROI_PROVIDER=template. Lab path cost: zero.
+

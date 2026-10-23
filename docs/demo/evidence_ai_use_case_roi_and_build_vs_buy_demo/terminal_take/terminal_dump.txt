@@ -1,0 +1,19 @@
+roi $ ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template python -m roi_and_build_vs_buy roi demo 2>/dev/null
+{"case_id": "refund-desk", "npv_3y": 180923.11690525152, "out": "out/refund-desk"}
+{"case_id": "weekly-report", "npv_3y": 5113.998546995942, "out": "out/weekly-report"}
+roi $ clear
+[H[2J[3Jroi $ ROI_ENABLE_REAL_PROVIDER=0 ROI_PROVIDER=template python -m roi_and_build_vs_buy roi demo 2>/dev/null
+{"case_id": "refund-desk", "npv_3y": 180923.11690525152, "out": "out/refund-desk"}
+{"case_id": "weekly-report", "npv_3y": 5113.998546995942, "out": "out/weekly-report"}
+roi $ clear
+[H[2J[3Jroi $ ROI_ENABLE_REAL_PROVIDER=0 DECIDE_REAL_PROVIDER=0 python -m roi_and_build_vs_buy decide report --case examples/bruma_freight --out out/bruma.md 2>/dev/null; echo wrote out/bruma.md; wc -l out/bruma.md
+wrote out/bruma.md
+208 out/bruma.md
+roi $ clear
+[H[2J[3Jroi $ ROI_ENABLE_REAL_PROVIDER=0 DECIDE_REAL_PROVIDER=0 python -m roi_and_build_vs_buy.evalkit 2>/dev/null | tail -5
+    }
+  ],
+  "ok": true
+}
+BOTH EVAL GATES PASSED
+roi $ 
